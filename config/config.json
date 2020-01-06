@@ -1,0 +1,33 @@
+{
+  "development": {
+    "username": "root",
+    "password": "root",
+    "database": "exampledb",
+    "host": "localhost",
+    "port": "8889",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "root",
+    "database": "testdb",
+    "host": "127.0.0.1",
+    "port": "8889",
+    "socketPath": "~travis/.my.cnf",
+    "dialect": "mysql",
+    "logging": false
+  },
+  "ci": {
+    "username": "root",
+    "password": "root",
+    "database": "testdb",
+    "host": "127.0.0.1",
+    "socketPath": "~travis/.my.cnf",
+    "dialect": "mysql",
+    "logging": false
+  },
+  "production": {
+    "use_env_variable": "JAWSDB_URL",
+    "dialect": "mysql"
+  }
+}
