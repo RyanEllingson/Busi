@@ -2,7 +2,9 @@
 
 Customer object: {
     id (int): auto-generated,
-    name (string): user-defined, not null
+    name (string): user-defined, not null,
+    address (string): user-defined,
+    phone (string): user-defined
 }
 
 Sales order object: {
@@ -32,9 +34,9 @@ The directions are intended as follows: what type of request to make, the query 
 
 View all customers: GET, "/api/customers"
 View specific customer: GET, "/api/customers/" + id
-Edit customer name: PUT, "/api/customers/" + id; send an object with key "name": new name
+Edit customer name: PUT, "/api/customers/" + id; send an object with keys name, address, and/or phone
 Delete customer: DELETE, "/api/customers/" + id
-Add customer: POST, "/api/customers"; send an object with key "name": customer name
+Add customer: POST, "/api/customers"; send an object with key name, and address and phone if applicable
 
 View all sales orders: GET, "/api/salesorders"
 View specific sales order: GET, "/api/salesorders/" + id
