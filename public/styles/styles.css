@@ -1,3 +1,6 @@
+body {
+  font-family: 'Lexend Deca', sans-serif;
+}
 .list-group-item {
   line-height: 2.5;
 }

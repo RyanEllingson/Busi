@@ -1,38 +1,98 @@
 var db = require("../models");
 
 module.exports = {
-  postExampleApi: async function(req, res) {
-    const dbExample = await db.Example.create(req.body);
-    res.json(dbExample);
+  postCustomerApi: async function(req, res) {
+    const dbCustomer = await db.Customer.create(req.body);
+    res.json(dbCustomer);
   },
   api: function(app) {
-    // Get all examples
-    app.get("/api/examples", function(req, res) {
-      db.Example.findAll({}).then(function(dbExamples) {
-        res.json(dbExamples);
+    // Get all customers
+    app.get("/api/customers", function(req, res) {
+      db.Customer.findAll({}).then(function(dbCustomers) {
+        res.json(dbCustomers);
       });
     });
 
-    // Get an example
-    app.get("/api/examples/:id", function(req, res) {
+    // Get a customer
+    app.get("/api/customers/:id", function(req, res) {
       console.log({ id: req.params.id });
-      db.Example.findAll({ where: { id: req.params.id } }).then(function(
-        dbExamples
+      db.Customer.findAll({ where: { id: req.params.id } }).then(function(
+        dbCustomers
       ) {
-        console.log(dbExamples);
-        res.json(dbExamples[0]);
+        console.log(dbCustomers);
+        res.json(dbCustomers[0]);
       });
     });
 
-    // Create a new example
-    app.post("/api/examples", this.postExampleApi);
+    // Create a new customer
+    app.post("/api/customers", this.postExampleApi);
 
-    // Delete an example by id
-    app.delete("/api/examples/:id", function(req, res) {
-      db.Example.destroy({ where: { id: req.params.id } }).then(function(
-        dbExample
+    // Update a customer
+    app.put("/api/customers/:id", function(req, res) {
+      if (req.body.name) {
+        db.Customer.update(
+          { name: req.body.name },
+          { where: { id: req.params.id } }
+        ).then(function(dbCustomer) {
+          if (req.body.address) {
+            db.Customer.update(
+              { address: req.body.address },
+              { where: { id: req.params.id } }
+            ).then(function(dbCustomer) {
+              if (req.body.phone) {
+                db.Customer.update(
+                  { phone: req.body.phone },
+                  { where: { id: req.params.id } }
+                ).then(function(dbCustomer) {
+                  res.json(dbCustomer);
+                });
+              } else {
+                res.json(dbCustomer);
+              }
+            });
+          } else if (req.body.phone) {
+            db.Customer.update(
+              { phone: req.body.phone },
+              { where: { id: req.params.id } }
+            ).then(function(dbCustomer) {
+              res.json(dbCustomer);
+            });
+          } else {
+            res.json(dbCustomer);
+          }
+        })
+      } else if (req.body.address) {
+        db.Customer.update(
+          { address: req.body.address },
+          { where: { id: req.params.id } }
+        ).then(function(dbCustomer) {
+          if (req.body.phone) {
+            db.Customer.update(
+              { phone: req.body.phone },
+              { where: { id: req.params.id } }
+            ).then(function(dbCustomer) {
+              res.json(dbCustomer);
+            });
+          } else {
+            res.json(dbCustomer);
+          }
+        });
+      } else if (req.body.phone) {
+        db.Customer.update(
+          { phone: req.body.phone },
+          { where: {id: req.params.id } }
+        ).then(function(dbCustomer) {
+          res.json(dbCustomer);
+        });
+      }
+    });
+
+    // Delete a customer by id
+    app.delete("/api/customers/:id", function(req, res) {
+      db.Customer.destroy({ where: { id: req.params.id } }).then(function(
+        dbCustomer
       ) {
-        res.json(dbExample);
+        res.json(dbCustomer);
       });
     });
   }
