@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
     const Order = sequelize.define("Order", {
         customer_id: {
-            type:DataTypes.INT,
+            type:DataTypes.INTEGER,
             allowNull: false
           },
           description: {
