@@ -266,6 +266,7 @@ module.exports = {
         db.Invoice.findAll({ where: { id: req.params.id } }).then(function(
           dbInvoices
         ) {
+          let isPaid;
           if (dbInvoices[0].total_amount - req.body.discount - dbInvoices[0].amount_paid > 0) {
             isPaid = false;
           } else {
