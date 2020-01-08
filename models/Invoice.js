@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
     const Invoice = sequelize.define("Invoice", {
         salesorder_id: {
-            type:DataTypes.INT,
+            type:DataTypes.INTEGER,
             allowNull: false
           },
           amount_paid: {
