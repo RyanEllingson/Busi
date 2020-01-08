@@ -1,5 +1,7 @@
 body {
   font-family: 'Lexend Deca', sans-serif;
+  padding: 0;
+  margin: 0;
 }
 .list-group-item {
   line-height: 2.5;
@@ -11,31 +13,73 @@ h1,
 h2 {
   text-align: center;
 }
+.table-header {
+  border-bottom: 1px gray solid;
+  background-color: white;
+  padding: 5px 0;
+  font-size: 13px;
+  font-weight: bold;
+
+}
+.sub-report-text {
+  font-size: 12px;
+}
+.sub-report-row {
+  border-bottom: 0.5px grey solid;
+}
+.sub-report-section-text {
+  color: white;
+  background-color:	#777777;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 5px;
+}
+.bg-navy {
+  background-color: #083C5D;
+}
+.bg-yellow {
+  background-color: #D98310 ;
+}
+.bg-soft-black {
+  background-color: #1D2731 ;
+}
+.teal-text {
+  color: #AAAAAA;
+}
+
 .topnav {
   text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  background-color: #414141;
+  font-size: 18px;
   display: none;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
   width: 100%;
+}
+.topnav li {
+  width: 33%;
+  border-right: 1px solid #999999;
+}
+.topnav li:last-child{
+  border-right: none;
+}
+.topnav li a {
+  display: block;
+  color: #AAAAAA;
+  text-align: center;
+  padding: 5px 5px;
+  text-decoration: none;
+}
+.topnav-toprow {
+  border-bottom: 1px solid #999999;
 }
 
 li {
   float: left;
 }
 
-li a {
-  display: block;
-  color: #CCDFCB;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
+
 
 li a:hover:not(.active) {
   background-color: #414141;
@@ -48,14 +92,14 @@ li a:hover:not(.active) {
 /* The side navigation menu */
 .sidenav {
   height: 100%; /* 100% Full-height */
-  width: 250; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
+  width: 100%;
+  position: relative; /* Stay in place */
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  background-color: #414141; /* Black*/
+  /* background-color: #083C5D; Black */
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
+  /* padding-top: 20px; Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
@@ -63,8 +107,9 @@ li a:hover:not(.active) {
 .sidenav a {
   padding: 8px 8px 8px 16px;
   text-decoration: none;
-  font-size: 25px;
-  color: #CCDFCB;
+  color: #AAAAAA;
+  font-size: 18px;
+  border-bottom: 1px solid #999999;
   display: block;
   transition: 0.3s;
 }
@@ -79,14 +124,22 @@ li a:hover:not(.active) {
   padding: 20px;
   padding-left: 200px;
 }
-
+.page-container {
+  margin-top: 0;
+}
+.topnav-display {
+  display: none;
+}
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 992px) {
   .sidenav {padding-top: 12px;}
   .sidenav a {font-size: 18px;}
   .sidenav {width: 0px;}
   .topnav {display:flex}
   .sidenav {display:none}
+  .left-col {display: none}
+  .page-container {margin-top:15px}
+  .topnav-display {display:flex}
 }
 
 .card {
@@ -106,6 +159,5 @@ li a:hover:not(.active) {
 }
 
 /* Add some padding inside the card container */
-.container {
-  padding: 2px 16px;
-}
+
+
