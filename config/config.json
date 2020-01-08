@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "exampledb",
+    "database": "busi_db",
     "host": "localhost",
     "port": "8889",
     "dialect": "mysql"

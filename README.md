@@ -19,7 +19,7 @@ Invoice object: {
     salesorder_id (int): user-defined, not null,
     amount paid (decimal): calculated,
     discount (decimal): default zero,
-    amount remaining (decimal): calculated,
+    total amount (decimal): calculated,
     paid (boolean): default false, calculated
 }
 

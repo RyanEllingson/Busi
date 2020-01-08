@@ -5,11 +5,18 @@ module.exports = function(sequelize, DataTypes) {
   class Customer extends Sequelize.Model {}
 
   // define the schema
+  // updated to include phone_number/address
   Customer.init(
     {
       name: {
         type: DataTypes.STRING,
         allowNull: false
+      },
+      phone_number: {
+        type: DataTypes.INTEGER,
+      },
+      address: {
+        type: DataTypes.STRING,
       }
     },
     { sequelize, modelName: "Customer" }
