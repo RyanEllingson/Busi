@@ -1,18 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <h1>Example</h1>
-    <input id="example-text">
-    <input id="example-description">
-    <button id="submit">submit</button>
-    <div id="example-list"></div>
-    <script src="/js/index.js" type="module"></script>
+    <ul class="topnav">
+        <li><a href="">Create Customer Account</a></li>
+        <li><a href="">Create Sales Order</a></li>
+        <li><a href="">Page 3</a></li>
+        <li><a href="">Page 4</a></li>
+        <li><a href="">Page 5</a></li>
+        <li><a href="">Page 6</a></li>
+    </ul>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="#">Create Customer Account</a>
+        <a href="#">Create Sales Order</a>
+        <a href="#">Page 3</a>
+        <a href="#">Page 4</a>
+        <a href="#">Page 5</a>
+        <a href="#">Page 6</a>
+    </div>
+
+    <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+    <div id="main">
+
+        <div class="card">
+            <div class="container">
+                <h4><b>Create Customer Account</b></h4>
+                <p></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="container">
+                <h4><b>Create Sales Order</b></h4>
+                <p></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="container">
+                <h4><b>Search Customer Accounts2</b></h4>
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <script src="./js/index.js" type="module"></script>
+
 </body>
+
 </html>
