@@ -16,7 +16,7 @@ module.exports = {
   postPaymentApi: async function(req, res) {
     const dbPayment = await db.Payment.create(req.body);
     res.json(dbPayment);
-  }
+  },
   api: function(app) {
     // Get all customers
     app.get("/api/customers", function(req, res) {
