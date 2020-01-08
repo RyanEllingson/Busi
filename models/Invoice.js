@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
           discount: {
             type:DataTypes.DECIMAL(10,2),
           },
-          amount_remaining: {
+          total_amount: {
             type:DataTypes.DECIMAL(10,2),
           },
           paid: {
