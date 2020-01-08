@@ -222,8 +222,8 @@ module.exports = {
       db.Order.findAll({ where: { id: salesorderId } }).then(function(
         dbOrders
       ) {
-        invoiceAmount = dbOrders[0].amount;
-        invoiceObj = {
+        const invoiceAmount = dbOrders[0].amount;
+        const invoiceObj = {
           salesorder_id: salesorderId,
           amount_remaining: invoiceAmount
         }
@@ -242,6 +242,7 @@ module.exports = {
             db.Invoice.findAll({ where: { id: req.params.id } }).then(function(
               dbInvoices
             ) {
+              let isPaid;
               if (dbInvoices[0].total_amount - req.body.discount - dbInvoices[0].amount_paid > 0) {
                 isPaid = false;
               } else {
@@ -318,7 +319,7 @@ module.exports = {
         let paidAmount = dbInvoices[0].amount_paid;
         paidAmount = paidAmount + request.amount;
         let isPaid;
-        if (dbInvoices[0].total_amount - req.body.discount - dbInvoices[0].amount_paid > 0) {
+        if (dbInvoices[0].total_amount - request.body.discount - dbInvoices[0].amount_paid > 0) {
           isPaid = false;
         } else {
           isPaid = true;
@@ -328,7 +329,7 @@ module.exports = {
             paid: isPaid },
           { where: { id: invoiceId } }
         ).then(function(dbInvoice) {
-          paymentObj = {
+          const paymentObj = {
             invoice_id: invoiceId,
             amount: request.amount
           }
