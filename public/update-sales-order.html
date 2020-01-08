@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create Sales Order</title>
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+
+<body>
+    <div class="container pb-3 pt-0 px-3 bg-light ">
+        <div class="row bg-dark text-white mb-3">
+            <div class="col p-2"><h4>Updating/Deleting Sales Order</h4></div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-12 col-md-3 pt-2"><label for="account">Sales Order #: </label></div>
+            <div class="col-sm-12 col-md-4 pl-md-0"><input type="text" class="form-control" id="order" value="00000004" disabled></div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-12 col-md-3 pt-2"><label for="account">Customer Account #:</label></div>
+            <div class="col-sm-12 col-md-4 pl-md-0"><input type="text" class="form-control" id="account" value="12345678" disabled></div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-12 col-md-3 pt-2"><label for="order">Order description: </label></div>
+            <div class="col-sm-12 col-md-8 pl-md-0"><input type="text" class="form-control" id="order"></div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-12 col-md-3 pt-2"><label for="amount">Amount ($): </label></div>
+            <div class="col-sm-12 col-md-2 pl-md-0"><input type="text" class="form-control" id="amount"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-3 pt-2"></div>
+            <div class="col-auto mb-2 pl-md-0"><button type="button" class="btn btn-primary" id="update-btn">Update</button></div>
+            <div class="col-auto mx-0"><button type="button" class="btn btn-danger" id="delete-btn">Delete Order</button></div>
+        </div>
+    </div>
+</body>
+
+</html>
