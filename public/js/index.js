@@ -1,10 +1,22 @@
-import API from "/js/api.js";
+//import API from "/js/api.js";
 
+/* Set the width of the side navigation to 250px */
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+};
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+};
+/*
 // Get references to page elements
 const exampleTextEl = document.getElementById("example-text");
 const exampleDescriptionEl = document.getElementById("example-description");
 const submitBtnEl = document.getElementById("submit");
 const exampleListEl = document.getElementById("example-list");
+
+
 
 // refreshExamples gets new examples from the db and repopulates the list
 const refreshExamples = function() {
@@ -72,3 +84,5 @@ submitBtnEl.addEventListener("click", handleFormSubmit);
 document.querySelectorAll(".delete").forEach(btn => {
   btn.addEventListener("click", handleDeleteBtnClick);
 });
+
+*/

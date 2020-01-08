@@ -13,115 +13,190 @@
 </head>
 
 <body>
-    <div class="container py-5 px-5 bg-dark mb-5 text-white">
-        <div class="row mb-2">
-            <div class="col-sm-12 col-md-4 text-md-right pt-2"><label for="customer">Enter sales order #: </label></div>
-            <div class="col-6 col-sm-6 col-md-3 pl-md-0"><input type="text" class="form-control" id="order"></div>
-            <div class="col-6 col-sm-4 col-md-3 pl-md-0"><button type="button" class="btn btn-secondary"
-                    id="submit-btn">Search</button></div>
-        </div>
-    </div>
-
-    <div class="container bg-light pb-2">
-        <!-- Sales order sub-report: should be hidden on page load -->
-        <div class="row sub-report-section-text mt-5">
-            <div class="col p-0">
-                <h5>Sales Order</h5>
+    <div class="container-fluid">
+        <!-- Page Title -->
+        <div class="row bg-soft-black py-3 page-container">
+            <div class="col text-center text-white">
+                <h4>Generating Invoice</h4>
             </div>
         </div>
-        <!-- Table header-->
-        <div class="row table-header">
-            <div class="col-3"> Order #</div>
-            <div class="col-7"> Description</div>
-            <div class="col-2 text-right"> Amount</div>
+        <!-- top navbar for small screen -->
+        <div class="row topnav-display">
+            <div class="col m-0 p-0">
+                <div class="topnav-toprow">
+                    <ul class="topnav bg-navy">
+                        <li><a href="">Create Customer Account</a></li>
+                        <li><a href="">Create Sales Order</a></li>
+                        <li><a href="">Generate Invoice</a></li>
+                    </ul>
+                </div>
+                <div class="topnav-bottomrow">
+                    <ul class="topnav bg-navy">
+                        <li><a href="">Search Customer</a></li>
+                        <li><a href="">Search Sales Order</a></li>
+                        <li><a href="">Search Invoice</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="row sub-report-text">
-            <div class="col-3"> 12345678 </div>
-            <div class="col-7"> Annual fee of hosting with enterprise deployment</div>
-            <div class="col-2 text-right"> $500 </div>
-        </div>
-        <!-- Payment sub-report: should be hidden on page load -->
-        <div class="row mt-4 sub-report-section-text">
-            <div class="col p-0">Payments</div>
-        </div>
-        <!-- Table header-->
-        <div class="row table-header">
-            <div class="col-1 col-sm-1 col-md-1">No</div>
-            <div class="col-6"> Description</div>
-            <div class="col-3"> Paid Date</div>
-            <div class="col-2 text-right"> Amount</div>
-        </div>
-        <div class="row sub-report-row sub-report-text">
-            <div class="col-1 col-sm-1 col-md-1">01</div>
-            <div class="col-6"> Down payment</div>
-            <div class="col-3"> 01/03/20</div>
-            <div class="col-2 text-right"> $200</div>
-        </div>
-        <div class="row sub-report-row sub-report-text">
-            <div class="col-1 col-sm-1 col-md-1">02</div>
-            <div class="col-6"> second Payment</div>
-            <div class="col-3"> 01/07/20</div>
-            <div class="col-2 text-right"> $100</div>
-        </div>
+        <!-- side navbar for large screen -->
+        <div class="row">
+            <div class="col-lg-2 left-col p-0 m-0">
+                <div id="mySidenav" class="sidenav bg-navy">
+                    <a href="#">Create Customer Account</a>
+                    <a href="#">Create Sales Order</a>
+                    <a href="#">Generate Invoice</a>
+                    <a href="#">Search Customer</a>
+                    <a href="#">Search Sales Order</a>
+                    <a href="#">Search Invoice</a>
+                </div>
+            </div>
+            <!-- ********************************************** -->
+            <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+            <div class="col-sm-12 col-lg-10 bg-light py-5 px-lg-5">
+                <!-- SEARCH SECTION -->
+                <div class="row m-0">
+                    <div class="container-fluid bg-yellow">
+                        <div class="row text-white p-5">
+                            <div class="col-sm-12 col-md-4 text-md-right"><label for="customer">Enter sales order#: </label></div>
+                            <div class="col-6 col-sm-6 col-md-3 pl-md-0"><input type="text" id="order" class="form-control"></div>
+                            <div class="col-6 col-sm-4 col-md-3 pl-md-0"><button id="search-btn" class="btn btn-secondary">Search</button></div>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- Discount section: should be hidden on page load -->
-        <div class="row sub-report-section-text mt-4">
-            <div class="col p-0">Discount</div>
-        </div>
-        <div class="row  sub-report-text mt-3">
-            <div class="col-sm-12 col-md-2 text-md-right pt-2"><label for="discountDesc">Description: </label></div>
-            <div class="col-sm-12 col-md-9 pl-md-0"><input type="text" class="form-control form-control-sm"
-                    id="discountDesc"></div>
-        </div>
-        <div class="row sub-report-text">
-            <div class="col-12 col-sm-12 col-md-2 text-md-right pt-2"><label for="amount">Amount ($): </label></div>
-            <div class="col-4 col-sm-4 col-md-2 pl-md-0"><input type="text" class="form-control form-control-sm"
-                    id="amount"></div>
-        </div>
+                <!-- RESULT SECTION -->
+                <!-- This section should be hidden on page load. -->
+                <div class="row m-0">
+                    <div class="container-fluid">
+                        <!-- Sales order sub-report: should be hidden on page load -->
+                        <div class="row sub-report-section-text mt-5">
+                            <div class="col p-0">
+                                <h5>Sales Order</h5>
+                            </div>
+                        </div>
+                        <!-- Table header-->
+                        <div class="row table-header">
+                            <div class="col-3"> Order #</div>
+                            <div class="col-7"> Description</div>
+                            <div class="col-2 text-right"> Amount</div>
+                        </div>
+                        <div class="row sub-report-text">
+                            <div class="col-3"> 12345678 </div>
+                            <div class="col-7"> Annual fee of hosting with enterprise deployment</div>
+                            <div class="col-2 text-right"> $500 </div>
+                        </div>
+                        <!-- Payment sub-report: should be hidden on page load -->
+                        <div class="row mt-4 sub-report-section-text">
+                            <div class="col p-0">Payments</div>
+                        </div>
+                        <!-- Table header-->
+                        <div class="row table-header">
+                            <div class="col-1 col-sm-1 col-md-1">No</div>
+                            <div class="col-6"> Description</div>
+                            <div class="col-3"> Paid Date</div>
+                            <div class="col-2 text-right"> Amount</div>
+                        </div>
+                        <div class="row sub-report-row sub-report-text">
+                            <div class="col-1 col-sm-1 col-md-1">01</div>
+                            <div class="col-6"> Down payment</div>
+                            <div class="col-3"> 01/03/20</div>
+                            <div class="col-2 text-right"> $200</div>
+                        </div>
+                        <div class="row sub-report-row sub-report-text">
+                            <div class="col-1 col-sm-1 col-md-1">02</div>
+                            <div class="col-6"> second Payment</div>
+                            <div class="col-3"> 01/07/20</div>
+                            <div class="col-2 text-right"> $100</div>
+                        </div>
 
-        <!-- Payment Adjustment section: should be hidden on page load -->
-        <div class="row sub-report-section-text mt-4">
-            <div class="col p-0">Payment Adjustment</div>
-        </div>
-        <div class="row  sub-report-text mt-3">
-            <div class="col-sm-12 col-md-2 text-md-right pt-2"><label for="discountDesc">Description: </label></div>
-            <div class="col-sm-12 col-md-9 pl-md-0"><input type="text" class="form-control form-control-sm"
-                    id="discountDesc"></div>
-        </div>
-        <div class="row  sub-report-text">
-            <div class="col-12 col-sm-12 col-md-2 text-md-right pt-2"><label for="amount">Amount ($): </label></div>
-            <div class="col-4 col-sm-4 col-md-2 pl-md-0"><input type="text" class="form-control form-control-sm"
-                    id="amount"></div>
+                        <!-- Discount section: should be hidden on page load -->
+                        <div class="row sub-report-section-text mt-4">
+                            <div class="col p-0">Discount</div>
+                        </div>
+                        <div class="row  sub-report-text mt-3">
+                            <div class="col-sm-12 col-md-2 text-md-right pt-2"><label for="discountDesc">Description:
+                                </label>
+                            </div>
+                            <div class="col-sm-12 col-md-9 pl-md-0"><input type="text"
+                                    class="form-control form-control-sm" id="discountDesc"></div>
+                        </div>
+                        <div class="row sub-report-text">
+                            <div class="col-12 col-sm-12 col-md-2 text-md-right pt-2"><label for="amount">Amount ($):
+                                </label>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-2 pl-md-0"><input type="text"
+                                    class="form-control form-control-sm" id="amount"></div>
+                        </div>
+
+                        <!-- Payment Adjustment section: should be hidden on page load -->
+                        <div class="row sub-report-section-text mt-4">
+                            <div class="col p-0">Payment Adjustment</div>
+                        </div>
+                        <div class="row  sub-report-text mt-3">
+                            <div class="col-sm-12 col-md-2 text-md-right pt-2"><label for="discountDesc">Description:
+                                </label>
+                            </div>
+                            <div class="col-sm-12 col-md-9 pl-md-0"><input type="text"
+                                    class="form-control form-control-sm" id="discountDesc"></div>
+                        </div>
+                        <div class="row  sub-report-text">
+                            <div class="col-12 col-sm-12 col-md-2 text-md-right pt-2"><label for="amount">Amount ($):
+                                </label>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-2 pl-md-0"><input type="text"
+                                    class="form-control form-control-sm" id="amount"></div>
+                        </div>
+                        <div class="row mt-3 justify-content-center">
+                            <div class="col-auto mb-2 mx-0"><button type="button" class="btn btn-primary"
+                                    id="invoice-btn">Generate
+                                    Invoice</button></div>
+                            <div class="col-auto mx-0"><button type="button" class="btn btn-warning" id="pdf-btn"
+                                    disabled>Print
+                                    PDF</button></div>
+                        </div>
+                        <!-- Invoice Summary -->
+                        <div class="row invoice-summary my-5">
+                            <div class="container bg-light">
+                                <div class="row justify-content-end text-right">
+                                    <div class="col-10">Invoice Number:</div>
+                                    <div class="col-2">00000001</div>
+                                </div>
+                                <div class="row justify-content-end text-right">
+                                    <div class="col-10">Invoice Total:</div>
+                                    <div class="col-2">$500</div>
+                                </div>
+                                <div class="row justify-content-end text-right">
+                                    <div class="col-10">Paid Amount:</div>
+                                    <div class="col-2">$50</div>
+                                </div>
+                                <div class="row justify-content-end text-right sub-report-row">
+                                    <div class="col-10">Discounted Amount:</div>
+                                    <div class="col-2">$20</div>
+                                </div>
+                                <div class="row justify-content-end text-right text-danger">
+                                    <div class="col-10">Balance Due:</div>
+                                    <div class="col-2">$470</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- end of content section -->
         </div>
     </div>
-    <div class="row mt-3 justify-content-center">
-        <div class="col-auto mb-2 mx-0"><button type="button" class="btn btn-primary" id="invoice-btn">Generate Invoice</button></div>
-        <div class="col-auto mx-0"><button type="button" class="btn btn-warning" id="pdf-btn" disabled>Print PDF</button></div>
-    </div>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        };
 
-    <div class="container bg-light my-3 py-3">
-        <div class="row justify-content-end text-right">
-            <div class="col-10">Invoice Number:</div>
-            <div class="col-2">00000001</div>
-        </div>
-        <div class="row justify-content-end text-right">
-            <div class="col-10">Invoice Total:</div>
-            <div class="col-2">$500</div>
-        </div>
-        <div class="row justify-content-end text-right">
-            <div class="col-10">Paid Amount:</div>
-            <div class="col-2">$50</div>
-        </div>
-        <div class="row justify-content-end text-right sub-report-row">
-            <div class="col-10">Discounted Amount:</div>
-            <div class="col-2">$20</div>
-        </div>
-        <div class="row justify-content-end text-right text-danger">
-            <div class="col-10">Balance Due:</div>
-            <div class="col-2">$470</div>
-        </div>
-
-    </div>
+        /* Set the width of the side navigation to 0 */
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        };
+    </script>
 </body>
 
 </html>

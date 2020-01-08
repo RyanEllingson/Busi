@@ -1,10 +1,14 @@
 body {
   font-family: 'Lexend Deca', sans-serif;
+  padding: 0;
+  margin: 0;
 }
 .list-group-item {
   line-height: 2.5;
 }
-
+* {
+  font-family: 'Lexend Deca', sans-serif;
+}
 h1,
 h2 {
   text-align: center;
@@ -30,4 +34,130 @@ h2 {
   font-weight: bold;
   padding: 5px 5px;
 }
+.bg-navy {
+  background-color: #083C5D;
+}
+.bg-yellow {
+  background-color: #D98310 ;
+}
+.bg-soft-black {
+  background-color: #1D2731 ;
+}
+.teal-text {
+  color: #AAAAAA;
+}
+
+.topnav {
+  text-decoration: none;
+  font-size: 18px;
+  display: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+}
+.topnav li {
+  width: 33%;
+  border-right: 1px solid #999999;
+}
+.topnav li:last-child{
+  border-right: none;
+}
+.topnav li a {
+  display: block;
+  color: #AAAAAA;
+  text-align: center;
+  padding: 5px 5px;
+  text-decoration: none;
+}
+.topnav-toprow {
+  border-bottom: 1px solid #999999;
+}
+
+li {
+  float: left;
+}
+
+
+
+li a:hover:not(.active) {
+  background-color: #414141;
+}
+
+.active {
+  background-color: #FF6A5C;
+}
+
+/* The side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 100%;
+  position: relative; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  /* background-color: #083C5D; Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  /* padding-top: 20px; Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 16px;
+  text-decoration: none;
+  color: #AAAAAA;
+  font-size: 18px;
+  border-bottom: 1px solid #999999;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  padding: 20px;
+  padding-left: 200px;
+}
+.page-container {
+  margin-top: 0;
+}
+.topnav-display {
+  display: none;
+}
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-width: 992px) {
+  .sidenav {padding-top: 12px;}
+  .sidenav a {font-size: 18px;}
+  .sidenav {width: 0px;}
+  .topnav {display:flex}
+  .sidenav {display:none}
+  .left-col {display: none}
+  .page-container {margin-top:15px}
+  .topnav-display {display:flex}
+}
+
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 250px;
+  margin-left: 200px;
+  margin-top: 50px;
+  text-align: center;
+  border-radius: 3px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+
 

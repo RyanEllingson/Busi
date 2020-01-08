@@ -1,18 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="/styles/styles.css">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
+
 <body>
-    <h1>Example</h1>
-    <input id="example-text">
-    <input id="example-description">
-    <button id="submit">submit</button>
-    <div id="example-list"></div>
-    <script src="/js/index.js" type="module"></script>
+    <div class="container-fluid">
+        <!-- Page Title -->
+        <!-- <div class="row bg-soft-black py-2 page-container">
+            <div class="col-lg-2"></div>
+            <div class="col-sm-12 col-lg-10 text-sm-center text-white">
+                <h4>Creating Customer Account</h4>
+            </div>
+        </div> -->
+        <!-- top navbar for small screen -->
+        <div class="row">
+            <div class="col m-0 p-0">
+                <div class="topnav-toprow">
+                    <ul class="topnav bg-navy">
+                        <li><a href="">Create Customer Account</a></li>
+                        <li><a href="">Create Sales Order</a></li>
+                        <li><a href="">Generate Invoice</a></li>
+                    </ul>
+                </div>
+                <div class="topnav-bottomrow">
+                    <ul class="topnav bg-navy">
+                        <li><a href="">Search Customer</a></li>
+                        <li><a href="">Search Sales Order</a></li>
+                        <li><a href="">Search Invoice</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- side navbar for large screen -->
+        <div class="row">
+            <div class="col-lg-2 left-col p-0 m-0">
+                <div id="mySidenav" class="sidenav bg-navy">
+                    <a href="#">Create Customer Account</a>
+                    <a href="#">Create Sales Order</a>
+                    <a href="#">Generate Invoice</a>
+                    <a href="#">Search Customer</a>
+                    <a href="#">Search Sales Order</a>
+                    <a href="#">Search Invoice</a>
+                </div>
+            </div>
+            <!-- ********************************************** -->
+            <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+            <div class="col-sm-12 col-lg-10 bg-light py-5">
+                
+                <h1>THIS IS DASHBOARD AREA!</h1>
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        };
+
+        /* Set the width of the side navigation to 0 */
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        };
+    </script>
 </body>
+
 </html>
