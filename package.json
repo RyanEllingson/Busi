@@ -1,5 +1,5 @@
 {
-  "name": "node-mysql-boilerplate",
+  "name": "mysql-boilerplate",
   "version": "1.0.0",
   "description": "Project 2 Starter",
   "main": "server.js",
@@ -10,15 +10,16 @@
     "fix": "eslint --fix .",
     "test": "npm run lint && cross-env NODE_ENV=test jest --runInBand"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.0",
     "husky": "^3.0.5",
     "lint-staged": "^9.4.0",
+    "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
     "react-scripts": "^3.1.2",
-    "sequelize": "^5.19.1",
+    "sequelize": "^5.21.3",
     "sequelize-cli": "^5.5.1"
   },
   "devDependencies": {
@@ -53,5 +54,17 @@
     "setupFiles": [
       "./test/setup.js"
     ]
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyanEllingson/Busi.git"
+  },
+  "author": "Paul Chheang",
+  "bugs": {
+    "url": "https://github.com/RyanEllingson/Busi/issues"
+  },
+  "homepage": "https://github.com/RyanEllingson/Busi#readme"
 }
