@@ -177,7 +177,7 @@ module.exports = {
         dbOrders
       ) {
         console.log(dbOrders);
-        res.json(dbOrders[0]);
+        res.json(dbOrders);
       });
     });
 
