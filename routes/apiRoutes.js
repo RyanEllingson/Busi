@@ -88,9 +88,9 @@ module.exports = {
               { address: req.body.address },
               { where: { id: req.params.id } }
             ).then(function(dbCustomer) {
-              if (req.body.phone) {
+              if (req.body.phone_number) {
                 db.Customer.update(
-                  { phone: req.body.phone },
+                  { phone_number: req.body.phone_number },
                   { where: { id: req.params.id } }
                 ).then(function(dbCustomer) {
                   res.json(dbCustomer);
@@ -99,9 +99,9 @@ module.exports = {
                 res.json(dbCustomer);
               }
             });
-          } else if (req.body.phone) {
+          } else if (req.body.phone_number) {
             db.Customer.update(
-              { phone: req.body.phone },
+              { phone_number: req.body.phone_number },
               { where: { id: req.params.id } }
             ).then(function(dbCustomer) {
               res.json(dbCustomer);
@@ -115,9 +115,9 @@ module.exports = {
           { address: req.body.address },
           { where: { id: req.params.id } }
         ).then(function(dbCustomer) {
-          if (req.body.phone) {
+          if (req.body.phone_number) {
             db.Customer.update(
-              { phone: req.body.phone },
+              { phone_number: req.body.phone_number },
               { where: { id: req.params.id } }
             ).then(function(dbCustomer) {
               res.json(dbCustomer);
@@ -126,9 +126,9 @@ module.exports = {
             res.json(dbCustomer);
           }
         });
-      } else if (req.body.phone) {
+      } else if (req.body.phone_number) {
         db.Customer.update(
-          { phone: req.body.phone },
+          { phone_number: req.body.phone_number },
           { where: { id: req.params.id } }
         ).then(function(dbCustomer) {
           res.json(dbCustomer);
