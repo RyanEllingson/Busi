@@ -17,7 +17,7 @@ document.getElementById("update-btn").addEventListener("click", function() {
   axios
     .put(`/api/customers/${customerId}`, {
       name: nameEl.value,
-      phone: phoneEl.value,
+      phone_number: phoneEl.value,
       address: addressEl.value
     })
     .then(res => console.log("Updated!"));

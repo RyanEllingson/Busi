@@ -1,5 +1,6 @@
 const db = require("../models");
 const _ = require("underscore");
+const Op = db.Sequelize.Op;
 
 module.exports = {
   postCustomerApi: async function(req, res) {
@@ -176,7 +177,7 @@ module.exports = {
         dbOrders
       ) {
         console.log(dbOrders);
-        res.json(dbOrders[0]);
+        res.json(dbOrders);
       });
     });
 
