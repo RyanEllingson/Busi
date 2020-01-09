@@ -1,5 +1,5 @@
 body {
-  font-family: 'Lexend Deca', sans-serif;
+  font-family: "Lexend Deca", sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -7,7 +7,7 @@ body {
   line-height: 2.5;
 }
 * {
-  font-family: 'Lexend Deca', sans-serif;
+  font-family: "Lexend Deca", sans-serif;
 }
 h1,
 h2 {
@@ -19,7 +19,6 @@ h2 {
   padding: 5px 0;
   font-size: 13px;
   font-weight: bold;
-
 }
 .sub-report-text {
   font-size: 12px;
@@ -29,22 +28,29 @@ h2 {
 }
 .sub-report-section-text {
   color: white;
-  background-color:	#777777;
+  background-color: #777777;
   font-size: 16px;
   font-weight: bold;
   padding: 5px 5px;
 }
+#result-container a {
+  text-decoration: none;
+  color: #083c5d;
+}
+#result-container a:hover {
+  color: #d98310;
+}
 .bg-navy {
-  background-color: #083C5D;
+  background-color: #083c5d;
 }
 .bg-yellow {
-  background-color: #D98310 ;
+  background-color: #d98310;
 }
 .bg-soft-black {
-  background-color: #1D2731 ;
+  background-color: #1d2731;
 }
 .teal-text {
-  color: #AAAAAA;
+  color: #aaaaaa;
 }
 
 .topnav {
@@ -61,12 +67,12 @@ h2 {
   width: 33%;
   border-right: 1px solid #999999;
 }
-.topnav li:last-child{
+.topnav li:last-child {
   border-right: none;
 }
 .topnav li a {
   display: block;
-  color: #AAAAAA;
+  color: #aaaaaa;
   text-align: center;
   padding: 5px 5px;
   text-decoration: none;
@@ -79,14 +85,12 @@ li {
   float: left;
 }
 
-
-
 li a:hover:not(.active) {
   background-color: #414141;
 }
 
 .active {
-  background-color: #FF6A5C;
+  background-color: #ff6a5c;
 }
 
 /* The side navigation menu */
@@ -107,7 +111,7 @@ li a:hover:not(.active) {
 .sidenav a {
   padding: 8px 8px 8px 16px;
   text-decoration: none;
-  color: #AAAAAA;
+  color: #aaaaaa;
   font-size: 18px;
   border-bottom: 1px solid #999999;
   display: block;
@@ -132,19 +136,35 @@ li a:hover:not(.active) {
 }
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-width: 992px) {
-  .sidenav {padding-top: 12px;}
-  .sidenav a {font-size: 18px;}
-  .sidenav {width: 0px;}
-  .topnav {display:flex}
-  .sidenav {display:none}
-  .left-col {display: none}
-  .page-container {margin-top:15px}
-  .topnav-display {display:flex}
+  .sidenav {
+    padding-top: 12px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+  .sidenav {
+    width: 0px;
+  }
+  .topnav {
+    display: flex;
+  }
+  .sidenav {
+    display: none;
+  }
+  .left-col {
+    display: none;
+  }
+  .page-container {
+    margin-top: 15px;
+  }
+  .topnav-display {
+    display: flex;
+  }
 }
 
 .card {
   /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 250px;
   margin-left: 200px;
@@ -155,9 +175,7 @@ li a:hover:not(.active) {
 
 /* On mouse-over, add a deeper shadow */
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Add some padding inside the card container */
-
-
