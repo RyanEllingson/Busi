@@ -25,16 +25,16 @@
             <div class="col m-0 p-0">
                 <div class="topnav-toprow">
                     <ul class="topnav bg-navy">
-                        <li><a href="">Create Customer Account</a></li>
-                        <li><a href="">Create Sales Order</a></li>
-                        <li><a href="">Generate Invoice</a></li>
+                        <li><a href="./create-customer.html">Create Customer Account</a></li>
+                        <li><a href="./create-sales-order.html">Create Sales Order</a></li>
+                        <li><a href="./create-invoice.html">Generate Invoice</a></li>
                     </ul>
                 </div>
                 <div class="topnav-bottomrow">
                     <ul class="topnav bg-navy">
-                        <li><a href="">Search Customer</a></li>
-                        <li><a href="">Search Sales Order</a></li>
-                        <li><a href="">Search Invoice</a></li>
+                        <li><a href="./search-customer.html">Search Customer</a></li>
+                        <li><a href="./search-sales-order.html">Search Sales Order</a></li>
+                        <li><a href="./search-invoice.html">Search Invoice</a></li>
                     </ul>
                 </div>
             </div>
@@ -44,12 +44,12 @@
             <div class="col-lg-2 left-col p-0 m-0">
                 <div id="mySidenav" class="sidenav bg-navy">
                         <img class="sb-logo" src="./Resources/Images/Busi logo.png">
-                    <a href="#">Create Customer Account</a>
-                    <a href="#">Create Sales Order</a>
-                    <a href="#">Generate Invoice</a>
-                    <a href="#">Search Customer</a>
-                    <a href="#">Search Sales Order</a>
-                    <a href="#">Search Invoice</a>
+                    <a href="./create-customer.html">Create Customer Account</a>
+                    <a href="./create-sales-order.html">Create Sales Order</a>
+                    <a href="./create-invoice.html">Generate Invoice</a>
+                    <a href="./search-customer.html">Search Customer</a>
+                    <a href="./search-sales-order.html">Search Sales Order</a>
+                    <a href="./search-invoice.html">Search Invoice</a>
                 </div>
             </div>
             <!-- ********************************************** -->
@@ -60,13 +60,13 @@
                     <div class="container-fluid bg-yellow p-4">
                         <div class="row">
                             <div class="col-sm-12 col-md-5">
-                                <input type="text" class="form-control" id="search" placeholder="search a customer...">
+                                <input type="text" id="search-term" class="form-control" placeholder="search a customer...">
                             </div>
                             <div class="col-sm-12 col-md-2 text-md-right pt-2">
                                 <label for="address">Search by:</label>
                             </div>
                             <div class="col-sm-12 col-md-auto px-md-0">
-                                <select class="form-control" id="customer">
+                                <select class="form-control" id="search-by">
                                     <option>Customer name</option>
                                     <option>Account number</option>
                                     <option>Phnone number</option>
@@ -80,29 +80,25 @@
                 </div>
                 <!-- RESULT SECTION -->
                 <!-- This section should be hidden on page load. -->
-                <div class="row m-0 mt-5">
-                    <div class="container-fluid">
+                <!-- Result Header. It's hidden on page load -->
+                <div  class="row m-0 mt-5">
+                    <div id="result-header" class="container-fluid">
                         <!-- Table header-->
                         <div class="row table-header">
                             <div class="col-2"> Customer Account #</div>
                             <div class="col-7"> Customer Name</div>
                             <div class="col-3 text-right"> Phone number</div>
                         </div>
-                        <div class="row sub-report-text sub-report-row py-1">
-                            <div class="col-2"><a href="#" id="12345678">12345678</a></div>
-                            <div class="col-7"> Customer A</div>
-                            <div class="col-3 text-right"> 132-243-3333 </div>
-                        </div>
-                        <div class="row sub-report-text sub-report-row py-1">
-                            <div class="col-2"><a href="#" id="12345679">12345679</a></div>
-                            <div class="col-7">Customer B</div>
-                            <div class="col-3 text-right"> 244-445-3456 </div>
-                        </div>
+                    </div>
+                    <!-- Result Header Container for showing newly created customers. -->
+                    <div id="result-container" class="container-fluid">
+                       <!-- results to be shown here -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/search-customer.js"></script>
 </body>
-
 </html>

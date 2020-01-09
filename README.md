@@ -1,4 +1,4 @@
-# Busi
+# Busi [![Build Status](https://travis-ci.com/RyanEllingson/Busi.png?branch=master)](https://travis-ci.com/RyanEllingson/Busi)
 
 Customer object: {
     id (int): auto-generated,

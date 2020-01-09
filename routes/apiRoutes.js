@@ -1,4 +1,5 @@
-var db = require("../models");
+const db = require("../models");
+const _ = require("underscore");
 
 module.exports = {
   postCustomerApi: async function(req, res) {
@@ -67,8 +68,25 @@ module.exports = {
         dbCustomers
       ) {
         console.log(dbCustomers);
-        res.json(dbCustomers[0]);
+        res.json(dbCustomers);
       });
+    });
+
+    // Get all customers that have name like the searched term
+    app.get("/customers/search-by-name/:name", (req, res) => {
+      db.Customer.findAll({
+        where: { name: { [Op.like]: "%" + req.params.name + "%" } }
+      })
+        .then(results => {
+          res.json(results);
+        })
+        .catch(err => console.log(err));
+    });
+    // Get all customers with phone number that matches the searched term
+    app.get("/customers/search-by-phone/:phone", (req, res) => {
+      db.Customer.findAll({ where: { phone_number: req.params.phone } })
+        .then(results => res.json(results))
+        .catch(err => console.log(err));
     });
 
     // Create a new customer
@@ -76,7 +94,8 @@ module.exports = {
 
     // Update a customer
     app.put("/api/customers/:id", function(req, res) {
-      if (req.body.name) {
+      // using the isNull function from the Underscore javascript library
+      if (!_.isNull(req.body.name)) {
         db.Customer.update(
           { name: req.body.name },
           { where: { id: req.params.id } }
@@ -86,9 +105,9 @@ module.exports = {
               { address: req.body.address },
               { where: { id: req.params.id } }
             ).then(function(dbCustomer) {
-              if (req.body.phone) {
+              if (req.body.phone_number) {
                 db.Customer.update(
-                  { phone: req.body.phone },
+                  { phone_number: req.body.phone_number },
                   { where: { id: req.params.id } }
                 ).then(function(dbCustomer) {
                   res.json(dbCustomer);
@@ -97,9 +116,9 @@ module.exports = {
                 res.json(dbCustomer);
               }
             });
-          } else if (req.body.phone) {
+          } else if (req.body.phone_number) {
             db.Customer.update(
-              { phone: req.body.phone },
+              { phone_number: req.body.phone_number },
               { where: { id: req.params.id } }
             ).then(function(dbCustomer) {
               res.json(dbCustomer);
@@ -113,9 +132,9 @@ module.exports = {
           { address: req.body.address },
           { where: { id: req.params.id } }
         ).then(function(dbCustomer) {
-          if (req.body.phone) {
+          if (req.body.phone_number) {
             db.Customer.update(
-              { phone: req.body.phone },
+              { phone_number: req.body.phone_number },
               { where: { id: req.params.id } }
             ).then(function(dbCustomer) {
               res.json(dbCustomer);
@@ -124,9 +143,9 @@ module.exports = {
             res.json(dbCustomer);
           }
         });
-      } else if (req.body.phone) {
+      } else if (req.body.phone_number) {
         db.Customer.update(
-          { phone: req.body.phone },
+          { phone_number: req.body.phone_number },
           { where: { id: req.params.id } }
         ).then(function(dbCustomer) {
           res.json(dbCustomer);
