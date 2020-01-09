@@ -1,24 +1,36 @@
 body {
-  font-family: 'Lexend Deca', sans-serif;
+  font-family: "Lexend Deca", sans-serif;
   padding: 0;
   margin: 0;
+}
+@font-face {
+  font-family: 'Alba Super';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Alba Super'), url('/public/Resources/ALBAS___.woff') format('woff');
 }
 .list-group-item {
   line-height: 2.5;
 }
 * {
-  font-family: 'Lexend Deca', sans-serif;
+  font-family: "Lexend Deca", sans-serif;
 }
 h1,
 h2 {
   text-align: center;
 }
+
 .table-header {
   border-bottom: 1px gray solid;
   background-color: white;
   padding: 5px 0;
   font-size: 13px;
   font-weight: bold;
+
+.dashboard-header {
+  font-size: 50px;
+  color: white;
+  text-shadow: 1px 1px 6px #5c5c5c;
 
 }
 .sub-report-text {
@@ -29,24 +41,37 @@ h2 {
 }
 .sub-report-section-text {
   color: white;
-  background-color:	#777777;
+  background-color: #777777;
   font-size: 16px;
   font-weight: bold;
   padding: 5px 5px;
 }
+#result-container a {
+  text-decoration: none;
+  color: #083c5d;
+}
+#result-container a:hover {
+  color: #d98310;
+}
 .bg-navy {
-  background-color: #083C5D;
+  background-color: #083c5d;
 }
 .bg-yellow {
-  background-color: #D98310 ;
+  background-color: #d98310;
 }
 .bg-soft-black {
-  background-color: #1D2731 ;
+  background-color: #1d2731;
 }
 .teal-text {
-  color: #AAAAAA;
+  color: #aaaaaa;
 }
-
+.sb-logo {
+  margin-top: -50px;
+  width:250px;
+  height:250px;
+  margin-bottom: -60px;
+  margin-left: -30px;
+}
 .topnav {
   text-decoration: none;
   font-size: 18px;
@@ -61,12 +86,12 @@ h2 {
   width: 33%;
   border-right: 1px solid #999999;
 }
-.topnav li:last-child{
+.topnav li:last-child {
   border-right: none;
 }
 .topnav li a {
   display: block;
-  color: #AAAAAA;
+  color: #aaaaaa;
   text-align: center;
   padding: 5px 5px;
   text-decoration: none;
@@ -74,21 +99,15 @@ h2 {
 .topnav-toprow {
   border-bottom: 1px solid #999999;
 }
-
 li {
   float: left;
 }
-
-
-
 li a:hover:not(.active) {
   background-color: #414141;
 }
-
 .active {
-  background-color: #FF6A5C;
+  background-color: #ff6a5c;
 }
-
 /* The side navigation menu */
 .sidenav {
   height: 100%; /* 100% Full-height */
@@ -102,23 +121,23 @@ li a:hover:not(.active) {
   /* padding-top: 20px; Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
-
 /* The navigation menu links */
 .sidenav a {
   padding: 8px 8px 8px 16px;
   text-decoration: none;
-  color: #AAAAAA;
+  color: #aaaaaa;
   font-size: 18px;
   border-bottom: 1px solid #999999;
   display: block;
   transition: 0.3s;
 }
-
+.full-sidenav {
+  height: 1000px !important;
+}
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
   color: #f1f1f1;
 }
-
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
   padding: 20px;
@@ -132,19 +151,34 @@ li a:hover:not(.active) {
 }
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-width: 992px) {
-  .sidenav {padding-top: 12px;}
-  .sidenav a {font-size: 18px;}
-  .sidenav {width: 0px;}
-  .topnav {display:flex}
-  .sidenav {display:none}
-  .left-col {display: none}
-  .page-container {margin-top:15px}
-  .topnav-display {display:flex}
+  .sidenav {
+    padding-top: 12px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+  .sidenav {
+    width: 0px;
+  }
+  .topnav {
+    display: flex;
+  }
+  .sidenav {
+    display: none;
+  }
+  .left-col {
+    display: none;
+  }
+  .page-container {
+    margin-top: 15px;
+  }
+  .topnav-display {
+    display: flex;
+  }
 }
-
 .card {
   /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 250px;
   margin-left: 200px;
@@ -152,12 +186,59 @@ li a:hover:not(.active) {
   text-align: center;
   border-radius: 3px;
 }
-
 /* On mouse-over, add a deeper shadow */
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-
 /* Add some padding inside the card container */
 
+.bg1 {
+  animation:slide 4s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #AAAAAA 50%, #328CC1 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:10s;
+}
+.bg3 {
+  animation-duration:10s;
+}
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
+
+.btn-primary {
+  background-color: #328CC1 ;
+  outline-color: #328CC1;
+  border-color: #328CC1;
+}
+.btn-danger { 
+  background-color: #FF6A5C;
+  outline-color: #FF6A5C;
+  border-color: #FF6A5C;
+}
+.btn-warning{ 
+  background-color: #083C5D;
+  outline-color: #083C5D;
+  border-color: #083C5D;
+  color: white;
+}
+.btn-warning:hover{ 
+  background-color: rgb(3, 35, 55);
+  outline-color: rgb(3, 35, 55);
+  border-color: rgb(3, 35, 55);
+  color: white;
+}
 

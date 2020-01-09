@@ -1,5 +1,6 @@
 const db = require("../models");
 const _ = require("underscore");
+const Op = db.Sequelize.Op;
 
 module.exports = {
   postCustomerApi: async function(req, res) {
@@ -74,8 +75,25 @@ module.exports = {
         dbCustomers
       ) {
         console.log(dbCustomers);
-        res.json(dbCustomers[0]);
+        res.json(dbCustomers);
       });
+    });
+
+    // Get all customers that have name like the searched term
+    app.get("/customers/search-by-name/:name", (req, res) => {
+      db.Customer.findAll({
+        where: { name: { [Op.like]: "%" + req.params.name + "%" } }
+      })
+        .then(results => {
+          res.json(results);
+        })
+        .catch(err => console.log(err));
+    });
+    // Get all customers with phone number that matches the searched term
+    app.get("/customers/search-by-phone/:phone", (req, res) => {
+      db.Customer.findAll({ where: { phone_number: req.params.phone } })
+        .then(results => res.json(results))
+        .catch(err => console.log(err));
     });
 
     // Create a new customer
@@ -165,7 +183,7 @@ module.exports = {
         dbOrders
       ) {
         console.log(dbOrders);
-        res.json(dbOrders[0]);
+        res.json(dbOrders);
       });
     });
 

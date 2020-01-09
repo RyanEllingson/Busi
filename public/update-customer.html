@@ -25,16 +25,16 @@
             <div class="col m-0 p-0">
                 <div class="topnav-toprow">
                     <ul class="topnav bg-navy">
-                        <li><a href="">Create Customer Account</a></li>
-                        <li><a href="">Create Sales Order</a></li>
-                        <li><a href="">Generate Invoice</a></li>
+                        <li><a href="./create-customer.html">Create Customer Account</a></li>
+                        <li><a href="./create-sales-order.html">Create Sales Order</a></li>
+                        <li><a href="./create-invoice.html">Generate Invoice</a></li>
                     </ul>
                 </div>
                 <div class="topnav-bottomrow">
                     <ul class="topnav bg-navy">
-                        <li><a href="">Search Customer</a></li>
-                        <li><a href="">Search Sales Order</a></li>
-                        <li><a href="">Search Invoice</a></li>
+                        <li><a href="./search-customer.html">Search Customer</a></li>
+                        <li><a href="./search-sales-order.html">Search Sales Order</a></li>
+                        <li><a href="./search-invoice.html">Search Invoice</a></li>
                     </ul>
                 </div>
             </div>
@@ -43,54 +43,65 @@
         <div class="row">
             <div class="col-lg-2 left-col p-0 m-0">
                 <div id="mySidenav" class="sidenav bg-navy">
-                    <a href="#">Create Customer Account</a>
-                    <a href="#">Create Sales Order</a>
-                    <a href="#">Generate Invoice</a>
-                    <a href="#">Search Customer</a>
-                    <a href="#">Search Sales Order</a>
-                    <a href="#">Search Invoice</a>
+                        <img class="sb-logo" src="./Resources/Images/Busi logo.png">
+                    <a href="./create-customer.html">Create Customer Account</a>
+                    <a href="./create-sales-order.html">Create Sales Order</a>
+                    <a href="./create-invoice.html">Generate Invoice</a>
+                    <a href="./search-customer.html">Search Customer</a>
+                    <a href="./search-sales-order.html">Search Sales Order</a>
+                    <a href="./search-invoice.html">Search Invoice</a>
+
                 </div>
             </div>
             <!-- ********************************************** -->
             <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
             <div class="col-sm-12 col-lg-10 bg-light py-5">
                 <div class="row mb-2">
-                    <div class="col-sm-12 col-md-3 pt-2"><label for="account">Customer Account #: </label></div>
-                    <div class="col-sm-12 col-md-4 pl-md-0"><input type="text" class="form-control" id="account"
-                            value="12345678" disabled></div>
+                    <div class="col-sm-12 col-md-3 pt-2">
+                        <label for="account">Customer Account #: </label>
+                    </div>
+                    <div class="col-sm-12 col-md-4 pl-md-0">
+                        <input type="text" class="form-control" id="account" disabled>
+                    </div>
                 </div>
                 <div class="row mb-2">
-                    <div class="col-sm-12 col-md-3 pt-2"><label for="name">Customer name: </label></div>
-                    <div class="col-sm-12 col-md-6 pl-md-0"><input type="text" class="form-control" id="name"></div>
+                    <div class="col-sm-12 col-md-3 pt-2">
+                        <label for="name">Customer name: </label>
+                    </div>
+                    <div class="col-sm-12 col-md-6 pl-md-0">
+                        <input type="text" class="form-control" id="name">
+                    </div>
                 </div>
                 <div class="row mb-2">
-                    <div class="col-sm-12 col-md-3 pt-2"><label for="address">Address: </label></div>
-                    <div class="col-sm-12 col-md-8 pl-md-0"><input type="text" class="form-control" id="address"></div>
+                    <div class="col-sm-12 col-md-3 pt-2">
+                        <label for="address">Address: </label>
+                    </div>
+                    <div class="col-sm-12 col-md-8 pl-md-0">
+                        <input type="text" class="form-control" id="address">
+                    </div>
                 </div>
                 <div class="row mb-2">
-                    <div class="col-sm-12 col-md-3 pt-2"><label for="phone-number">Phone number: </label></div>
-                    <div class="col-sm-12 col-md-4 pl-md-0"><input type="text" class="form-control" id="phone-number">
+                    <div class="col-sm-12 col-md-3 pt-2">
+                        <label for="phone-number">Phone number: </label>
+                    </div>
+                    <div class="col-sm-12 col-md-4 pl-md-0">
+                        <input type="text" class="form-control" id="phone">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-3 pt-2"></div>
-                    <div class="col-auto mb-2 pl-md-0"><button type="button" class="btn btn-primary"
-                            id="update-btn">Update</button></div>
-                    <div class="col-auto mx-0"><button type="button" class="btn btn-danger" id="delete-btn">Delete
-                            Account</button></div>
+                    <div class="col-auto mb-2 pl-md-0">
+                        <button type="button" class="btn btn-primary" id="update-btn">Update</button>
+                    </div>
+                    <div class="col-auto mx-0">
+                        <button type="button" class="btn btn-danger" id="delete-btn">Delete Account</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-        };
-
-        /* Set the width of the side navigation to 0 */
-        function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
-        };
-    </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/update-delete-customer.js"></script>
 </body>
+
 </html>
