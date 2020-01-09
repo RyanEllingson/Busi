@@ -1,57 +1,16 @@
-# Busi [![Build Status](https://travis-ci.com/RyanEllingson/Busi.png?branch=master)](https://travis-ci.com/RyanEllingson/Busi)
+# Busi 
 
-Customer object: {
-    id (int): auto-generated,
-    name (string): user-defined, not null,
-    address (string): user-defined,
-    phone (string): user-defined
-}
+Busi is a *simple, fast, and user-friendly* sales management solution developed for startups and small-scale businesses. Supported functions allow a user to *create, search, and update* customers, sales orders, invoices, and updates.
 
-Sales order object: {
-    id (int): auto-generated,
-    customer_id (int): user-defined, not null,
-    description (string): user-defined, not null,
-    amount (decimal): user-defined, not null
-}
 
-Invoice object: {
-    id (int): auto-generated,
-    salesorder_id (int): user-defined, not null,
-    amount paid (decimal): calculated,
-    discount (decimal): default zero,
-    total amount (decimal): calculated,
-    paid (boolean): default false, calculated
-}
 
-Payment object: {
-    id (int): auto-generated,
-    invoice_id (int): user-defined, not null
-    amount (decimal): user-defined, not null
-}
+### Status:
+---
+[![Build Status](https://travis-ci.com/RyanEllingson/Busi.png?branch=master)](https://travis-ci.com/RyanEllingson/Busi)
 
-Routes to send to back end:
-The directions are intended as follows: what type of request to make, the query url, and information about what object to send in the req body if applicable
 
-View all customers: GET, "/api/customers"
-View specific customer: GET, "/api/customers/" + id
-Edit customer name: PUT, "/api/customers/" + id; send an object with keys name, address, and/or phone
-Delete customer: DELETE, "/api/customers/" + id
-Add customer: POST, "/api/customers"; send an object with key name, and address and phone if applicable
+### Contributions:
+---
+This application was developed as a project by [Paul Chheang](https://github.com/paul-kh), [Ryan Ellingson](https://github.com/RyanEllingson), [Michael Iverson](https://github.com/ivers523), and [William Molhoek](https://github.com/wmolhoek).
+                                                
 
-View all sales orders: GET, "/api/salesorders"
-View specific sales order: GET, "/api/salesorders/" + id
-Edit sales order: PUT, "/api/salesorders/" + id; send an object with keys you want to be changed
-Delete sales order: DELETE, "/api/salesorders/" + id
-Create sales order: POST, "/api/salesorders"; send an object with keys customer_id, description, and amount
-
-View all invoices: GET, "/api/invoices"
-View specific invoice: GET, "/api/invoices/" + id
-Edit invoice: PUT, "/api/invoices/" + id; send an object with keys salesorder_id and/or discount
-Delete invoice: DELETE, "/api/invoices/" + id
-Create invoice: POST, "/api/invoices"; send an object with keys salesorder_id and amount, and discount if applicable
-
-View all payments: GET, "/api/payments"
-View specific payment: GET, "/api/payments/" + id
-Edit payment: PUT, "/api/payments/" + id; send an object with keys invoice_id and/or amount
-Delete payment: DELETE, "api/payments/" + id
-Create payment: POST, "api/payments"; send an object with keys invoice_id and amount
