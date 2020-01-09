@@ -48,3 +48,53 @@ describe("API - ROUTES", () => {
     expect(res.json.mock.calls[0][0].customer_id).toBe(req.body.customer_id);
   });
 });
+
+describe("API - ROUTES", () => {
+  let req = {};
+  let res = {};
+  beforeEach(() => {
+    req = {};
+    res = {};
+  });
+  it("should add an invoice", async () => {
+    req = {
+      body: {
+        salesorder_id: 1
+      }
+    };
+
+    res = {
+      json: jest.fn()
+    };
+
+    await apiRoutes.postInvoiceApi(req, res);
+    expect(res.json.mock.calls[0][0].salesorder_id).toBe(
+      req.body.salesorder_id
+    );
+  });
+});
+
+describe("API - ROUTES", () => {
+  let req = {};
+  let res = {};
+  beforeEach(() => {
+    req = {};
+    res = {};
+  });
+  it("should add a payment", async () => {
+    req = {
+      body: {
+        invoice_id: 1,
+        amount: 10
+      }
+    };
+
+    res = {
+      json: jest.fn()
+    };
+
+    await apiRoutes.postPaymentApi(req, res);
+    console.log(res.json.mock.calls[0]);
+    expect(res.json.mock.calls[0][0].invoice_id).toBe(req.body.invoice_id);
+  });
+});

@@ -14,45 +14,38 @@ module.exports = {
   postInvoiceApi: async function(req, res) {
     const dbInvoice = await db.Invoice.create(req.body);
     const salesorderId = dbInvoice.dataValues.salesorder_id;
-    db.Order.findAll({ where: { id: salesorderId } }).then(function(dbOrders) {
-      const amount = dbOrders[0].amount;
-      console.log(dbOrders);
-      db.Invoice.update(
-        { total_amount: amount },
-        { where: { id: dbInvoice.dataValues.id } }
-      ).then(function(dbInvoice) {
-        res.json(dbInvoice);
-      });
-    });
+    const dbOrders = await db.Order.findAll({ where: { id: salesorderId } });
+    console.log(dbOrders);
+    const amount = dbOrders[0].amount;
+    const dbInvoice2 = await db.Invoice.update(
+      { total_amount: amount },
+      { where: { id: dbInvoice.dataValues.id } }
+    );
+    res.json(dbInvoice);
   },
   postPaymentApi: async function(req, res) {
     const dbPayment = await db.Payment.create(req.body);
     const invoiceId = dbPayment.dataValues.invoice_id;
-    db.Payment.findAll({ where: { invoice_id: invoiceId } }).then(function(
-      dbPayments
-    ) {
-      let totalPaid = 0;
-      for (let i = 0; i < dbPayments.length; i++) {
-        const amount = parseFloat(dbPayments[i].amount);
-        totalPaid = totalPaid + amount;
-      }
-      db.Invoice.findAll({ where: { id: invoiceId } }).then(function(
-        dbInvoices
-      ) {
-        let isPaid;
-        if (dbInvoices[0].total_amount - req.body.discount - totalPaid > 0) {
-          isPaid = false;
-        } else {
-          isPaid = true;
-        }
-        db.Invoice.update(
-          { amount_paid: totalPaid, paid: isPaid },
-          { where: { id: invoiceId } }
-        ).then(function(dbInvoice) {
-          res.json(dbPayment);
-        });
-      });
+    const dbPayments = await db.Payment.findAll({
+      where: { invoice_id: invoiceId }
     });
+    let totalPaid = 0;
+    for (let i = 0; i < dbPayments.length; i++) {
+      const amount = parseFloat(dbPayments[i].amount);
+      totalPaid = totalPaid + amount;
+    }
+    const dbInvoices = await db.Invoice.findAll({ where: { id: invoiceId } });
+    let isPaid;
+    if (dbInvoices[0].total_amount - req.body.discount - totalPaid > 0) {
+      isPaid = false;
+    } else {
+      isPaid = true;
+    }
+    const dbInvoice = await db.Invoice.update(
+      { amount_paid: totalPaid, paid: isPaid },
+      { where: { id: invoiceId } }
+    );
+    res.json(dbPayment);
   },
   api: function(app) {
     // Get all customers

@@ -10,9 +10,9 @@
   "test": {
     "username": "root",
     "password": "root",
-    "database": "testdb",
-    "host": "127.0.0.1",
-    "port": "8889",
+    "database": "busi_db",
+    "host": "localhost",
+    "port": "3306",
     "socketPath": "~travis/.my.cnf",
     "dialect": "mysql",
     "logging": false
