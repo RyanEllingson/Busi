@@ -25,26 +25,30 @@ module.exports = {
   },
   postPaymentApi: async function(req, res) {
     const dbPayment = await db.Payment.create(req.body);
-    const invoiceId = dbPayment.invoice_id;
-    db.Invoice.findAll({ where: { id: invoiceId } }).then(function(dbInvoices) {
-      let paidAmount = dbInvoices[0].amount_paid;
-      paidAmount = paidAmount + dbPayment.amount;
-      let isPaid;
-      if (
-        dbInvoices[0].total_amount -
-          dbInvoices[0].discount -
-          dbInvoices[0].amount_paid >
-        0
-      ) {
-        isPaid = false;
-      } else {
-        isPaid = true;
+    const invoiceId = dbPayment.dataValues.invoice_id;
+    db.Payment.findAll({ where: { invoice_id: invoiceId } }).then(function(
+      dbPayments
+    ) {
+      let totalPaid = 0;
+      for (let i = 0; i < dbPayments.length; i++) {
+        const amount = parseFloat(dbPayments[i].amount);
+        totalPaid = totalPaid + amount;
       }
-      db.Invoice.update(
-        { amount_paid: paidAmount, paid: isPaid },
-        { where: { id: invoiceId } }
-      ).then(function(dbInvoice) {
-        res.json(dbPayment);
+      db.Invoice.findAll({ where: { id: invoiceId } }).then(function(
+        dbInvoices
+      ) {
+        let isPaid;
+        if (dbInvoices[0].total_amount - req.body.discount - totalPaid > 0) {
+          isPaid = false;
+        } else {
+          isPaid = true;
+        }
+        db.Invoice.update(
+          { amount_paid: totalPaid, paid: isPaid },
+          { where: { id: invoiceId } }
+        ).then(function(dbInvoice) {
+          res.json(dbPayment);
+        });
       });
     });
   },
@@ -335,71 +339,61 @@ module.exports = {
       });
     });
 
-    // Create a new invoice
-    // app.post("/api/invoices", this.postInvoiceApi);
-
-    app.post("/api/payments", this.postPaymentApi);
-
     // Create a new payment
-    app.post("/api/payments", function(request) {
-      const invoiceId = request.invoice_id;
-      db.Invoice.findAll({ where: { id: invoiceId } }).then(function(
-        dbInvoices
-      ) {
-        let paidAmount = dbInvoices[0].amount_paid;
-        paidAmount = paidAmount + request.amount;
-        let isPaid;
-        if (
-          dbInvoices[0].total_amount -
-            request.body.discount -
-            dbInvoices[0].amount_paid >
-          0
-        ) {
-          isPaid = false;
-        } else {
-          isPaid = true;
-        }
-        db.Invoice.update(
-          { amount_paid: paidAmount, paid: isPaid },
-          { where: { id: invoiceId } }
-        ).then(function(dbInvoice) {
-          const paymentObj = {
-            invoice_id: invoiceId,
-            amount: request.amount
-          };
-          this.postPaymentApi(paymentObj);
-        });
-      });
-    });
+    app.post("/api/payments", this.postPaymentApi);
 
     // Update a payment
     app.put("/api/payments/:id", function(req, res) {
       if (req.body.invoice_id) {
-        db.Payment.update(
-          { invoice_id: req.body.invoice_id },
-          { where: { id: req.params.id } }
-        ).then(function(dbPayment) {
-          if (req.body.amount) {
-            db.Payment.update(
-              { amount: req.body.amount },
-              { where: { id: req.params.id } }
-            ).then(function(dbPayment) {
-              db.Payment.findAll({ where: { id: req.params.id } }).then(
-                function(dbPayments) {
-                  const invoiceId = dbPayments[0].invoice_id;
-                  db.Payment.findAll({ where: { invoice_id: invoiceId } }).then(
-                    function(dbPayments) {
-                      let totalPaid;
-                      for (let i = 0; i < dbPayments.length; i++) {
-                        totalPaid = totalPaid + dbPayments[0].amount;
-                      }
-                      db.Invoice.findAll({ where: { id: invoiceId } }).then(
-                        function(dbInvoices) {
+        db.Payment.findAll({ where: { id: req.params.id } }).then(function(
+          dbPayment
+        ) {
+          const oldInvoiceId = dbPayment[0].invoice_id;
+          db.Payment.update(
+            { invoice_id: req.body.invoice_id },
+            { where: { id: req.params.id } }
+          ).then(function(dbPayment) {
+            db.Payment.findAll({ where: { invoice_id: oldInvoiceId } }).then(
+              function(dbPayments) {
+                let totalPaid = 0;
+                for (let i = 0; i < dbPayments.length; i++) {
+                  const amount = parseFloat(dbPayments[i].amount);
+                  totalPaid = totalPaid + amount;
+                }
+                db.Invoice.findAll({ where: { id: oldInvoiceId } }).then(
+                  function(dbInvoices) {
+                    let isPaid;
+                    if (
+                      dbInvoices[0].total_amount -
+                        dbInvoices[0].discount -
+                        totalPaid >
+                      0
+                    ) {
+                      isPaid = false;
+                    } else {
+                      isPaid = true;
+                    }
+                    console.log(isPaid);
+                    db.Invoice.update(
+                      { amount_paid: totalPaid, paid: isPaid },
+                      { where: { id: oldInvoiceId } }
+                    ).then(function(dbInvoice) {
+                      db.Payment.findAll({
+                        where: { invoice_id: req.body.invoice_id }
+                      }).then(function(dbPayments) {
+                        let totalPaid = 0;
+                        for (let i = 0; i < dbPayments.length; i++) {
+                          const amount = parseFloat(dbPayments[i].amount);
+                          totalPaid = totalPaid + amount;
+                        }
+                        db.Invoice.findAll({
+                          where: { id: req.body.invoice_id }
+                        }).then(function(dbInvoices) {
                           let isPaid;
                           if (
                             dbInvoices[0].total_amount -
-                              req.body.discount -
-                              dbInvoices[0].amount_paid >
+                              dbInvoices[0].discount -
+                              totalPaid >
                             0
                           ) {
                             isPaid = false;
@@ -408,20 +402,70 @@ module.exports = {
                           }
                           db.Invoice.update(
                             { amount_paid: totalPaid, paid: isPaid },
-                            { where: { id: invoiceId } }
+                            { where: { id: req.body.invoice_id } }
                           ).then(function(dbInvoice) {
-                            res.json(dbPayment);
+                            if (req.body.amount) {
+                              db.Payment.update(
+                                { amount: req.body.amount },
+                                { where: { id: req.params.id } }
+                              ).then(function(dbPayment) {
+                                db.Payment.findAll({
+                                  where: { id: req.params.id }
+                                }).then(function(dbPayment) {
+                                  const invoiceId = dbPayment[0].invoice_id;
+                                  db.Payment.findAll({
+                                    where: { invoice_id: invoiceId }
+                                  }).then(function(dbPayments) {
+                                    let totalPaid = 0;
+                                    for (
+                                      let i = 0;
+                                      i < dbPayments.length;
+                                      i++
+                                    ) {
+                                      const amount = parseFloat(
+                                        dbPayments[i].amount
+                                      );
+                                      totalPaid = totalPaid + amount;
+                                    }
+                                    db.Invoice.findAll({
+                                      where: { id: invoiceId }
+                                    }).then(function(dbInvoices) {
+                                      let isPaid;
+                                      if (
+                                        dbInvoices[0].total_amount -
+                                          dbInvoices[0].discount -
+                                          totalPaid >
+                                        0
+                                      ) {
+                                        isPaid = false;
+                                      } else {
+                                        isPaid = true;
+                                      }
+                                      db.Invoice.update(
+                                        {
+                                          amount_paid: totalPaid,
+                                          paid: isPaid
+                                        },
+                                        { where: { id: invoiceId } }
+                                      ).then(function(dbInvoice) {
+                                        res.json(dbPayment);
+                                      });
+                                    });
+                                  });
+                                });
+                              });
+                            } else {
+                              res.json(dbPayment);
+                            }
                           });
-                        }
-                      );
-                    }
-                  );
-                }
-              );
-            });
-          } else {
-            res.json(dbPayment);
-          }
+                        });
+                      });
+                    });
+                  }
+                );
+              }
+            );
+          });
         });
       } else if (req.body.amount) {
         db.Payment.update(
@@ -429,14 +473,15 @@ module.exports = {
           { where: { id: req.params.id } }
         ).then(function(dbPayment) {
           db.Payment.findAll({ where: { id: req.params.id } }).then(function(
-            dbPayments
+            dbPayment
           ) {
-            const invoiceId = dbPayments[0].invoice_id;
+            const invoiceId = dbPayment[0].invoice_id;
             db.Payment.findAll({ where: { invoice_id: invoiceId } }).then(
               function(dbPayments) {
-                let totalPaid;
+                let totalPaid = 0;
                 for (let i = 0; i < dbPayments.length; i++) {
-                  totalPaid = totalPaid + dbPayments[0].amount;
+                  const amount = parseFloat(dbPayments[i].amount);
+                  totalPaid = totalPaid + amount;
                 }
                 db.Invoice.findAll({ where: { id: invoiceId } }).then(function(
                   dbInvoices
@@ -444,14 +489,18 @@ module.exports = {
                   let isPaid;
                   if (
                     dbInvoices[0].total_amount -
-                      req.body.discount -
-                      dbInvoices[0].amount_paid >
+                      dbInvoices[0].discount -
+                      totalPaid >
                     0
                   ) {
                     isPaid = false;
                   } else {
                     isPaid = true;
                   }
+                  console.log("total amount = " + dbInvoices[0].total_amount);
+                  console.log("discount = " + dbInvoices[0].discount);
+                  console.log("total paid = " + totalPaid);
+                  console.log("isPaid = " + isPaid);
                   db.Invoice.update(
                     { amount_paid: totalPaid, paid: isPaid },
                     { where: { id: invoiceId } }
@@ -469,26 +518,25 @@ module.exports = {
     // Delete a payment by id
     app.delete("/api/payments/:id", function(req, res) {
       db.Payment.findAll({ where: { id: req.params.id } }).then(function(
-        dbPayments
+        dbPayment
       ) {
-        const invoiceId = dbPayments[0].invoice_id;
+        const invoiceId = dbPayment[0].invoice_id;
         db.Payment.destroy({ where: { id: req.params.id } }).then(function(
           dbPayment
         ) {
           db.Payment.findAll({ where: { invoice_id: invoiceId } }).then(
             function(dbPayments) {
-              let totalPaid;
+              let totalPaid = 0;
               for (let i = 0; i < dbPayments.length; i++) {
-                totalPaid = totalPaid + dbPayments[0].amount;
+                const amount = parseFloat(dbPayments[i].amount);
+                totalPaid = totalPaid + amount;
               }
               db.Invoice.findAll({ where: { id: invoiceId } }).then(function(
                 dbInvoices
               ) {
                 let isPaid;
                 if (
-                  dbInvoices[0].total_amount -
-                    req.body.discount -
-                    dbInvoices[0].amount_paid >
+                  dbInvoices[0].total_amount - req.body.discount - totalPaid >
                   0
                 ) {
                   isPaid = false;
