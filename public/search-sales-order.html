@@ -13,42 +13,92 @@
 </head>
 
 <body>
-    <div class="container py-5 bg-dark text-white">
-        <div class="row mb-2">
-            <div class="col-sm-12 col-md-5"><input type="text" class="form-control" id="search" placeholder="search a sales order ..."></div>
-            <div class="col-sm-12 col-md-auto text-md-right pt-2"><label for="address">Search by: </label></div>
-            <div class="col-sm-12 col-md-3 px-md-0">
-                <select class="form-control" id="customer">
-                    <option>Order Number</option>
-                    <option>Customer Account Number</option>
-                </select>
+    <div class="container-fluid">
+        <!-- Page Title -->
+        <div class="row bg-soft-black py-3 page-container">
+            <div class="col text-center text-white">
+                <h4>Searching Sales Order</h4>
             </div>
-            <div class="col-sm-12 mt-3 col-md-2 mt-md-0 "><button type="button" class="btn btn-primary"
-                id="submit-btn">Search</button></div>
+        </div>
+        <!-- top navbar for small screen -->
+        <div class="row topnav-display">
+            <div class="col m-0 p-0">
+                <div class="topnav-toprow">
+                    <ul class="topnav bg-navy">
+                        <li><a href="./create-customer.html">Create Customer Account</a></li>
+                        <li><a href="./create-sales-order.html">Create Sales Order</a></li>
+                        <li><a href="./create-invoice.html">Generate Invoice</a></li>
+                    </ul>
+                </div>
+                <div class="topnav-bottomrow">
+                    <ul class="topnav bg-navy">
+                        <li><a href="./search-customer.html">Search Customer</a></li>
+                        <li><a href="./search-sales-order.html">Search Sales Order</a></li>
+                        <li><a href="./search-invoice.html">Search Invoice</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- side navbar for large screen -->
+        <div class="row">
+            <div class="col-lg-2 left-col p-0 m-0">
+                <div id="mySidenav" class="sidenav bg-navy">
+                    <a href="./create-customer.html">Create Customer Account</a>
+                    <a href="./create-sales-order.html">Create Sales Order</a>
+                    <a href="./create-invoice.html">Generate Invoice</a>
+                    <a href="./search-customer.html">Search Customer</a>
+                    <a href="./search-sales-order.html">Search Sales Order</a>
+                    <a href="./search-invoice.html">Search Invoice</a>
+                </div>
+            </div>
+            <!-- ********************************************** -->
+            <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+            <div class="col-sm-12 col-lg-10 bg-light py-5 px-lg-5">
+                <!-- SEARCH SECTION -->
+                <div class="row m-0">
+                    <div class="container-fluid bg-yellow p-4">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-5">
+                                <input type="text" id="search-term" class="form-control"
+                                    placeholder="search a customer...">
+                            </div>
+                            <div class="col-sm-12 col-md-2 text-md-right pt-2">
+                                <label for="address">Search by:</label>
+                            </div>
+                            <div class="col-sm-12 col-md-auto px-md-0">
+                                <select class="form-control" id="search-by">
+                                    <option>Order Number</option>
+                                    <option>Customer Account Number</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 mt-3 col-md-2 mt-md-0 ">
+                                <button type="button" class="btn btn-secondary" id="search-btn">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- RESULT SECTION -->
+                <!-- This section should be hidden on page load. -->
+                <!-- Result Header. It's hidden on page load -->
+                <div class="row m-0 mt-5">
+                    <div id="result-header" class="container-fluid">
+                        <!-- Table header-->
+                        <div class="row table-header">
+                            <div class="col-2"> Sales Order #</div>
+                            <div class="col-2"> Customer Account #</div>
+                            <div class="col-6"> Sales Order Description</div>
+                            <div class="col-2 text-right"> Amount</div>
+                        </div>
+                    </div>
+                    <!-- Result Header Container for showing newly created customers. -->
+                    <div id="result-container" class="container-fluid">
+                        <!-- results to be shown here -->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="container bg-light my-3">
-        <!-- Table header-->
-        <div class="row table-header">
-            <div class="col-2"> Sales Order #</div>
-            <div class="col-2"> Customer Account #</div>
-            <div class="col-6"> Sales Order Description</div>
-            <div class="col-2 text-right"> Amount</div>
-        </div>
-        <div class="row sub-report-text sub-report-row py-1">
-            <div class="col-2"><a href="#" id="00045455">00045455</a></div>
-            <div class="col-2">12345678</div>
-            <div class="col-6"> Annual hosting fee for enterprise service</div>
-            <div class="col-2 text-right"> $500 </div>
-        </div>
-        <div class="row sub-report-text sub-report-row py-1">
-            <div class="col-2"><a href="#" id="00045456">00045456</a></div>
-            <div class="col-2">12345679</div>
-            <div class="col-6"> Lorem ipsum dolor sit amet consectetur</div>
-            <div class="col-2 text-right"> $1000 </div>
-        </div>
-    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 
 </html>
