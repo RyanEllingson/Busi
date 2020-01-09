@@ -13,16 +13,22 @@ module.exports = {
   postInvoiceApi: async function(req, res) {
     const dbInvoice = await db.Invoice.create(req.body);
     const salesorderId = dbInvoice.dataValues.salesorder_id;
-    db.Order.findAll({ where: { id: salesorderId } }).then(function(dbOrders) {
-      const amount = dbOrders[0].amount;
-      console.log(dbOrders);
-      db.Invoice.update(
-        { total_amount: amount },
-        { where: { id: dbInvoice.dataValues.id } }
-      ).then(function(dbInvoice) {
-        res.json(dbInvoice);
-      });
-    });
+    const dbOrders = await db.Order.findAll({ where: { id: salesorderId } });
+    // db.Order.findAll({ where: { id: salesorderId } }).then(function(dbOrders) {
+    console.log(dbOrders);
+    const amount = dbOrders[0].amount;
+    const dbInvoice2 = await db.Invoice.update(
+      { total_amount: amount },
+      { where: { id: dbInvoice.dataValues.id } }
+    );
+    // db.Invoice.update(
+    //   { total_amount: amount },
+    //   { where: { id: dbInvoice.dataValues.id } }
+    // ).then(function(dbInvoice) {
+
+    res.json(dbInvoice);
+    //   });
+    // });
   },
   postPaymentApi: async function(req, res) {
     const dbPayment = await db.Payment.create(req.body);
