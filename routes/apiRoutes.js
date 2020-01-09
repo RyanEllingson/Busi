@@ -1,4 +1,5 @@
-var db = require("../models");
+const db = require("../models");
+const _ = require("underscore");
 
 module.exports = {
   postCustomerApi: async function(req, res) {
@@ -76,7 +77,8 @@ module.exports = {
 
     // Update a customer
     app.put("/api/customers/:id", function(req, res) {
-      if (req.body.name) {
+      // using the isNull function from the Underscore javascript library
+      if (!_.isNull(req.body.name)) {
         db.Customer.update(
           { name: req.body.name },
           { where: { id: req.params.id } }
