@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet/less" type="text/css" href="styles.less" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
 </head>
 
 <body>
@@ -62,7 +64,8 @@
                     <div class="container-fluid bg-yellow p-4">
                         <div class="row">
                             <div class="col-sm-12 col-md-5">
-                                <input type="text" id="search-term" class="form-control" placeholder="search a customer...">
+                                <input type="text" id="search-term" class="form-control"
+                                    placeholder="search a customer...">
                             </div>
                             <div class="col-sm-12 col-md-2 text-md-right pt-2">
                                 <label for="address">Search by:</label>
@@ -82,7 +85,7 @@
                 </div>
                 <!-- RESULT SECTION -->
                 <!-- This section should be hidden on page load. -->
-                <div  class="row m-0 mt-5">
+                <div class="row m-0 mt-5">
                     <div id="result-header" class="container-fluid d-none">
                         <!-- Table header-->
                         <div class="row table-header">
@@ -93,7 +96,7 @@
                     </div>
                     <!-- Result Header Container for showing newly created customers. -->
                     <div id="result-container" class="container-fluid">
-                       <!-- results to be shown here -->
+                        <!-- results to be shown here -->
                     </div>
                 </div>
             </div>
@@ -102,4 +105,5 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./js/search-customer.js"></script>
 </body>
+
 </html>
