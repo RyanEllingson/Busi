@@ -19,7 +19,12 @@ h1,
 h2 {
   text-align: center;
 }
-
+.card-text {
+  padding: 20px;
+  color: #083C5D;
+  font-size: 20px;
+  
+}
 .table-header {
   border-bottom: 1px gray solid;
   background-color: white;
@@ -31,7 +36,6 @@ h2 {
   font-size: 50px;
   color: white;
   text-shadow: 1px 1px 6px #5c5c5c;
-
 }
 .sub-report-text {
   font-size: 12px;
@@ -70,7 +74,7 @@ h2 {
   width:250px;
   height:250px;
   margin-bottom: -60px;
-  margin-left: -30px;
+  margin-left: -40px;
 }
 .topnav {
   text-decoration: none;
@@ -98,6 +102,28 @@ h2 {
 }
 .topnav-toprow {
   border-bottom: 1px solid #999999;
+}
+.btn-primary {
+  background-color: #328CC1 ;
+  outline-color: #328CC1;
+  border-color: #328CC1;
+}
+.btn-danger { 
+  background-color: #FF6A5C;
+  outline-color: #FF6A5C;
+  border-color: #FF6A5C;
+}
+.btn-warning{ 
+  background-color: #083C5D;
+  outline-color: #083C5D;
+  border-color: #083C5D;
+  color: white;
+}
+.btn-warning:hover{ 
+  background-color: rgb(3, 35, 55);
+  outline-color: rgb(3, 35, 55);
+  border-color: rgb(3, 35, 55);
+  color: white;
 }
 li {
   float: left;
@@ -176,15 +202,16 @@ li a:hover:not(.active) {
     display: flex;
   }
 }
+
 .card {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  width: 250px;
+  width: 600px;
   margin-left: 200px;
   margin-top: 50px;
   text-align: center;
-  border-radius: 3px;
+  border-radius: 9px;
 }
 /* On mouse-over, add a deeper shadow */
 .card:hover {
@@ -218,27 +245,3 @@ li a:hover:not(.active) {
     transform:translateX(25%);
   }
 }
-
-.btn-primary {
-  background-color: #328CC1 ;
-  outline-color: #328CC1;
-  border-color: #328CC1;
-}
-.btn-danger { 
-  background-color: #FF6A5C;
-  outline-color: #FF6A5C;
-  border-color: #FF6A5C;
-}
-.btn-warning{ 
-  background-color: #083C5D;
-  outline-color: #083C5D;
-  border-color: #083C5D;
-  color: white;
-}
-.btn-warning:hover{ 
-  background-color: rgb(3, 35, 55);
-  outline-color: rgb(3, 35, 55);
-  border-color: rgb(3, 35, 55);
-  color: white;
-}
-
