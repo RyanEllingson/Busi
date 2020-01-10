@@ -33,7 +33,7 @@ document.getElementById("update-btn").addEventListener("click", function() {
           amount: amountEl.value
         })
         .then(data => {
-          console.log(data);
+          alert(`The sales order is updated successfully!`);
         });
     }
   });
@@ -41,14 +41,16 @@ document.getElementById("update-btn").addEventListener("click", function() {
 
 // Delete sales order
 document.getElementById("delete-btn").addEventListener("click", function() {
-  // Bonus: should confirm user before deleting!
-  axios.delete(`/api/salesorders/${orderId}`).then(res => {
-    console.log("Deleted!");
-    accountEl.value = "";
-    orderEl.value = "";
-    descriptionEl.value = "";
-    amountEl.value = "";
-    document.getElementById("update-btn").disabled = true;
-    document.getElementById("delete-btn").disabled = true;
-  });
+  // eslint-disable-next-line no-restricted-globals
+  const userAnswer = confirm(
+    `Are you about to delete the sales order with ID: ${orderId}. Are you sure???`
+  );
+  if (userAnswer === true) {
+    axios.delete(`/api/salesorders/${orderId}`).then(res => {
+      alert(`The customer with ID: ${orderId} is deleted successfully!`);
+      window.location.href = "./search-sales-order.html";
+    });
+  } else {
+    // do nothing when user cancelled deletion
+  }
 });

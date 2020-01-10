@@ -21,19 +21,23 @@ document.getElementById("update-btn").addEventListener("click", function() {
       phone_number: phoneEl.value,
       address: addressEl.value
     })
-    .then(res => console.log("Updated!"));
+    .then(res =>
+      alert(`The customer with ID: ${customerId} is updated successfully!`)
+    );
 });
 
 // Delete customer
 document.getElementById("delete-btn").addEventListener("click", function() {
-  // Bonus: should confirm user before deleting!
-  axios.delete(`/api/customers/${customerId}`).then(res => {
-    console.log("Deleted!");
-    accountEl.value = "";
-    nameEl.value = "";
-    addressEl.value = "";
-    phoneEl.value = "";
-    document.getElementById("update-btn").disabled = true;
-    document.getElementById("delete-btn").disabled = true;
-  });
+  // eslint-disable-next-line no-restricted-globals
+  const userAnswer = confirm(
+    `Are you about to delete the customer with ID: ${customerId}. Are you sure???`
+  );
+  if (userAnswer === true) {
+    axios.delete(`/api/customers/${customerId}`).then(res => {
+      alert(`The customer with ID: ${customerId} is deleted successfully!`);
+      window.location.href = "./search-customer.html";
+    });
+  } else {
+    // do nothing when user cancelled deletion
+  }
 });

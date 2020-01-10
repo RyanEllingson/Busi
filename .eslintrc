@@ -5,7 +5,8 @@
   },
   "globals": {
     "axios": "readonly",
-    "require": "readonly"
+    "require": "readonly",
+    "confirm": "readonly"
   }
 
 }
