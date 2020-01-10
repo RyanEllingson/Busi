@@ -78,7 +78,7 @@ function generateInvoice() {
                     inv.data.discount);
 
                 //create session storage of invoice id
-                sessionStorage.setItem("invoiceId", inv.data.id);
+                sessionStorage.setItem("id", inv.data.id);
                 window.location.href = "./pdf-invoice.html";
               });
             });

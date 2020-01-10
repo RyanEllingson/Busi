@@ -1,5 +1,10 @@
 const invoiceID = sessionStorage.getItem("id");
 console.log(invoiceID);
+// button elements
+const pdfBtn = document.getElementById("pdf-btn");
+const deleteBtn = document.getElementById("delete-btn");
+const updateBtn = document.getElementById("update-btn");
+
 const orderSubReportContainer = document.getElementById("order-sub-report");
 const paymentSubrptContainer = document.getElementById("payment-sub-report");
 
@@ -52,8 +57,12 @@ axios.get(`/api/invoices/${invoiceID}`).then(invoice => {
       renderPayments(results, paymentSubrptContainer);
 
       // INVOICE FOOTER/SUMMARY
-      showInvoiceFooter();
-      async function showInvoiceFooter() {
+      showInvoiceFooter(totalInvoiceAmt, discount, totalPaidAmt);
+      async function showInvoiceFooter(
+        totalInvoiceAmt,
+        discount,
+        totalPaidAmt
+      ) {
         const invoiceTotal = document.getElementById("invoice-total");
         const paidAmount = document.getElementById("paid-amount");
         const discountEl = document.getElementById("discounted-amount");
@@ -70,8 +79,67 @@ axios.get(`/api/invoices/${invoiceID}`).then(invoice => {
         balanceDue.innerHTML =
           "$" + (totalInvoiceAmt - totalPaid - discountAmt);
       }
+
+      // UPDAGE INVOICE WITH PAYMENT ADJUSTMENT
+      // - insert into table payment the with invoice ID
+      updateBtn.addEventListener("click", function() {
+        const payAdjEl = document.getElementById("pay-amount");
+        if (payAdjEl.value === "0" || payAdjEl.value === "") {
+          // do nothing if user didn't enter anything or leave blank
+          alert("0 or nothing");
+        } else if (isNaN(payAdjEl.value)) {
+          alert("Pay Amount must be a number!");
+          payAdjEl.focus();
+        } else {
+          axios
+            .post("/api/payments", {
+              invoice_id: invoiceID,
+              amount: payAdjEl.value
+            })
+            .then(async payAdj => {
+              console.log(payAdj);
+              // get total paid amount of the invoice
+              const results = [];
+              for (let i = 0; i < payAdj.data.length; i++) {
+                if (payAdj.data[i].invoice_id === parseInt(invoiceID)) {
+                  results.push(payAdj.data[i]);
+                  totalPaidAmt =
+                    totalPaidAmt + parseFloat(payAdj.data[i].amount);
+                }
+              }
+              // refresh page to render payments and invoice footer
+              window.location.reload();
+              // Redirect to Print Format
+            });
+
+          // - show footer again
+          // - render payment again
+        }
+      });
     });
   });
+});
+
+// SHOW PRINT FORMAT
+pdfBtn.addEventListener("click", () => {
+  window.location.href = "./pdf-invoice.html";
+});
+
+// DELETE INVOICE
+deleteBtn.addEventListener("click", () => {
+  // eslint-disable-next-line no-restricted-globals
+  const userAnswer = confirm(
+    `Are you about to delete the invoice with ID: ${invoiceID}. Are you sure???`
+  );
+  if (userAnswer === true) {
+    axios.delete(`/api/invoices/${invoiceID}`).then(res => {
+      alert(`The invoice ${invoiceID} is deleted successfully!`);
+      // redirect to the page "search-invoice.html"
+      window.location.href = "./search-invoice.html";
+    });
+  } else {
+    // do nothing when user cancelled deletion
+  }
 });
 
 // const subReportSectionContainer = document.getElementById("sub-report-section");

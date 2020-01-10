@@ -1,6 +1,6 @@
 // get session storage of invoice id
 // const fs = require("fs");
-const invoiceID = sessionStorage.getItem("invoiceId");
+const invoiceID = sessionStorage.getItem("id");
 const orderSubReportContainer = document.getElementById("order-sub-report");
 const paymentSubrptContainer = document.getElementById("payment-sub-report");
 // variables for invoice footer/summary
@@ -19,6 +19,10 @@ axios.get(`/api/invoices/${invoiceID}`).then(invoice => {
   console.log("order id: ", invoice.data.salesorder_id);
   // INVOICE FOOTER
   discount = invoice.data.discount;
+  if (discount === null) {
+    discount = 0;
+  }
+  console.log("discount: ", discount);
 
   console.log("discount: ", discount);
   // .... get order info
@@ -56,13 +60,13 @@ axios.get(`/api/invoices/${invoiceID}`).then(invoice => {
         const balanceDue = document.getElementById("balance-due");
 
         const totalInvoice = await totalInvoiceAmt;
-        const discountAmt = await invoice.data.discount;
+        const discountAmt = await discount;
         const totalPaid = await totalPaidAmt;
 
         // show footer
         invoiceTotal.innerHTML = "$" + parseFloat(totalInvoice);
         paidAmount.innerHTML = "$" + totalPaid;
-        discountEl.innerHTML = "$" + parseFloat(discountAmt);
+        discountEl.innerHTML = "$" + discountAmt;
         balanceDue.innerHTML =
           "$" + (totalInvoiceAmt - totalPaid - discountAmt);
       }
@@ -71,7 +75,6 @@ axios.get(`/api/invoices/${invoiceID}`).then(invoice => {
       document.getElementById("pdf-btn").addEventListener("click", function() {
         // convertToPDF();
         // open in new tap;
-        alert("to print PDF");
       });
       // function convertToPDF(htmlStr, pdfFileName) {
       //     convertFactory = require('electron-html-to');

@@ -22,9 +22,11 @@ document
 
         // default is 'Sales Order Number'
         default:
-        //   axios
-        //     .get(`/customers/search-by-phone/${searchStrEl.value}`)
-        //     .then(res => showResultHTML(res.data, resultContainerEl));
+          axios
+            .get(
+              `/invoices/search-by-salesorder/${parseInt(searchStrEl.value)}`
+            )
+            .then(res => showResultHTML(res.data, resultContainerEl));
       }
     }
   });
