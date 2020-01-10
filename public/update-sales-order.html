@@ -43,7 +43,9 @@
         <div class="row">
             <div class="col-lg-2 left-col p-0 m-0">
                 <div id="mySidenav" class="sidenav bg-navy">
+                    <a href="./index.html">
                         <img class="sb-logo" src="./Resources/Images/Busi logo.png">
+                    </a>
                     <a href="./create-customer.html">Create Customer Account</a>
                     <a href="./create-sales-order.html">Create Sales Order</a>
                     <a href="./create-invoice.html">Generate Invoice</a>
@@ -57,21 +59,27 @@
             <div class="col-sm-12 col-lg-10 bg-light py-5">
                 <div class="row mb-2">
                     <div class="col-sm-12 col-md-3 pt-2"><label for="account">Sales Order #: </label></div>
-                    <div class="col-sm-12 col-md-4 pl-md-0"><input type="text" class="form-control" id="order"
-                            value="00000004" disabled></div>
+                    <div class="col-sm-12 col-md-4 pl-md-0">
+                        <input type="text" class="form-control" id="order" disabled>
+                    </div>
                 </div>
                 <div class="row mb-2">
                     <div class="col-sm-12 col-md-3 pt-2"><label for="account">Customer Account #:</label></div>
-                    <div class="col-sm-12 col-md-4 pl-md-0"><input type="text" class="form-control" id="account"
-                            value="12345678" disabled></div>
+                    <div class="col-sm-12 col-md-4 pl-md-0">
+                        <input type="text" class="form-control" id="account">
+                    </div>
                 </div>
                 <div class="row mb-2">
                     <div class="col-sm-12 col-md-3 pt-2"><label for="order">Order description: </label></div>
-                    <div class="col-sm-12 col-md-8 pl-md-0"><input type="text" class="form-control" id="order"></div>
+                    <div class="col-sm-12 col-md-8 pl-md-0">
+                        <input type="text" class="form-control" id="description">
+                    </div>
                 </div>
                 <div class="row mb-2">
                     <div class="col-sm-12 col-md-3 pt-2"><label for="amount">Amount ($): </label></div>
-                    <div class="col-sm-12 col-md-2 pl-md-0"><input type="text" class="form-control" id="amount"></div>
+                    <div class="col-sm-12 col-md-2 pl-md-0">
+                        <input type="text" class="form-control" id="amount">
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-3 pt-2"></div>
@@ -80,10 +88,29 @@
                     <div class="col-auto mx-0"><button type="button" class="btn btn-danger" id="delete-btn">Delete
                             Order</button></div>
                 </div>
+                <!-- RESULT SECTION -->
+                <!-- This section should be hidden on page load. -->
+                <!-- Result Header. It's hidden on page load -->
+                <div class="row m-0 mt-5">
+                    <div id="result-header" class="container-fluid">
+                        <!-- Table header-->
+                        <div class="row table-header">
+                            <div class="col-2"> Sales Order #</div>
+                            <div class="col-2"> Customer Account #</div>
+                            <div class="col-6"> Sales Order Description</div>
+                            <div class="col-2 text-right"> Amount</div>
+                        </div>
+                    </div>
+                    <!-- Result Header Container for showing newly created customers. -->
+                    <div id="result-container" class="container-fluid">
+                        <!-- results to be shown here -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/update-delete-sales-order.js"></script>
 </body>
 
 </html>

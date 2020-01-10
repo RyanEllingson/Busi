@@ -49,7 +49,7 @@ function showResultHTML(data, resultContainer) {
   for (let i = 0; i < foundCustomerEls.length; i++) {
     foundCustomerEls[i].addEventListener("click", function(event) {
       const customerId = event.target.parentElement.getAttribute("id");
-      sessionStorage.setItem("customerId", customerId);
+      sessionStorage.setItem("id", customerId);
       window.location.href = "./update-customer.html";
     });
   }
