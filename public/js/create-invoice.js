@@ -76,6 +76,10 @@ function generateInvoice() {
                   (order.data[0].amount -
                     inv.data.amount_paid -
                     inv.data.discount);
+
+                //create session storage of invoice id
+                sessionStorage.setItem("invoiceId", inv.data.id);
+                window.location.href = "./pdf-invoice.html";
               });
             });
         });

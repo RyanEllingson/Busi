@@ -4,7 +4,8 @@
     "jquery": true
   },
   "globals": {
-    "axios": "readonly"
+    "axios": "readonly",
+    "require": "readonly"
   }
 
 }
