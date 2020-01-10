@@ -43,9 +43,9 @@
         <div class="row">
             <div class="col-lg-2 left-col p-0 m-0">
                 <div id="mySidenav" class="sidenav bg-navy">
-
+                    <a href="./index.html">
                         <img class="sb-logo" src="./Resources/Images/Busi logo.png">
-
+                    </a>
                     <a href="./create-customer.html">Create Customer Account</a>
                     <a href="./create-sales-order.html">Create Sales Order</a>
                     <a href="./create-invoice.html">Generate Invoice</a>
@@ -62,9 +62,15 @@
                 <div class="row m-0">
                     <div class="container-fluid bg-yellow">
                         <div class="row text-white p-5">
-                            <div class="col-sm-12 col-md-4 text-md-right"><label for="customer">Enter sales order#: </label></div>
-                            <div class="col-6 col-sm-6 col-md-3 pl-md-0"><input type="text" id="order" class="form-control"></div>
-                            <div class="col-6 col-sm-4 col-md-3 pl-md-0"><button id="search-btn" class="btn btn-primary">Search</button></div>
+                            <div class="col-sm-12 col-md-4 text-md-right">
+                                <label for="order-id">Enter sales order#: </label>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-3 pl-md-0">
+                                <input type="text" id="order-id" class="form-control">
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-3 pl-md-0">
+                                <button id="search-btn" class="btn btn-primary">Search</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -72,8 +78,9 @@
                 <!-- RESULT SECTION -->
                 <!-- This section should be hidden on page load. -->
                 <div class="row m-0">
-                    <div class="container-fluid">
-                        <!-- Sales order sub-report: should be hidden on page load -->
+                    <div id="sub-report-section" class="container-fluid d-none">
+
+                        <!-- SALES ORDER SUB REPORT-->
                         <div class="row sub-report-section-text mt-5">
                             <div class="col p-0">
                                 <h5>Sales Order</h5>
@@ -85,102 +92,74 @@
                             <div class="col-7"> Description</div>
                             <div class="col-2 text-right"> Amount</div>
                         </div>
-                        <div class="row sub-report-text">
-                            <div class="col-3"> 12345678 </div>
-                            <div class="col-7"> Annual fee of hosting with enterprise deployment</div>
-                            <div class="col-2 text-right"> $500 </div>
+                        <div id="order-sub-report" class="row sub-report-text">
+                            <!-- the found sales order is to show here -->
                         </div>
-                        <!-- Payment sub-report: should be hidden on page load -->
-                        <div class="row mt-4 sub-report-section-text">
-                            <div class="col p-0">Payments</div>
-                        </div>
-                        <!-- Table header-->
-                        <div class="row table-header">
-                            <div class="col-1 col-sm-1 col-md-1">No</div>
-                            <div class="col-6"> Description</div>
-                            <div class="col-3"> Paid Date</div>
-                            <div class="col-2 text-right"> Amount</div>
-                        </div>
-                        <div class="row sub-report-row sub-report-text">
-                            <div class="col-1 col-sm-1 col-md-1">01</div>
-                            <div class="col-6"> Down payment</div>
-                            <div class="col-3"> 01/03/20</div>
-                            <div class="col-2 text-right"> $200</div>
-                        </div>
-                        <div class="row sub-report-row sub-report-text">
-                            <div class="col-1 col-sm-1 col-md-1">02</div>
-                            <div class="col-6"> second Payment</div>
-                            <div class="col-3"> 01/07/20</div>
-                            <div class="col-2 text-right"> $100</div>
-                        </div>
+
 
                         <!-- Discount section: should be hidden on page load -->
                         <div class="row sub-report-section-text mt-4">
                             <div class="col p-0">Discount</div>
                         </div>
-                        <div class="row  sub-report-text mt-3">
-                            <div class="col-sm-12 col-md-2 text-md-right pt-2"><label for="discountDesc">Description:
-                                </label>
+                        <div class="row sub-report-text mt-3">
+                            <div class="col-12 col-sm-12 col-md-3 text-md-right pt-2">
+                                <label for="discount-amount">Discount Amount ($):</label>
                             </div>
-                            <div class="col-sm-12 col-md-9 pl-md-0"><input type="text"
-                                    class="form-control form-control-sm" id="discountDesc"></div>
-                        </div>
-                        <div class="row sub-report-text">
-                            <div class="col-12 col-sm-12 col-md-2 text-md-right pt-2"><label for="amount">Amount ($):
-                                </label>
+                            <div class="col-4 col-sm-4 col-md-2 pl-md-0">
+                                <input type="text" class="form-control form-control-sm" id="discount-amount">
                             </div>
-                            <div class="col-4 col-sm-4 col-md-2 pl-md-0"><input type="text"
-                                    class="form-control form-control-sm" id="amount"></div>
                         </div>
 
                         <!-- Payment Adjustment section: should be hidden on page load -->
                         <div class="row sub-report-section-text mt-4">
-                            <div class="col p-0">Payment Adjustment</div>
+                            <div class="col p-0">Payment</div>
                         </div>
                         <div class="row  sub-report-text mt-3">
-                            <div class="col-sm-12 col-md-2 text-md-right pt-2"><label for="discountDesc">Description:
-                                </label>
+                            <div class="col-12 col-sm-12 col-md-3 text-md-right pt-2">
+                                <label for="pay-amount">Amount to Pay ($): </label>
+
                             </div>
-                            <div class="col-sm-12 col-md-9 pl-md-0"><input type="text"
-                                    class="form-control form-control-sm" id="discountDesc"></div>
-                        </div>
-                        <div class="row  sub-report-text">
-                            <div class="col-12 col-sm-12 col-md-2 text-md-right pt-2"><label for="amount">Amount ($):
-                                </label>
+                            <div class="col-4 col-sm-4 col-md-2 pl-md-0">
+                                <input type="text" class="form-control form-control-sm" id="pay-amount">
                             </div>
-                            <div class="col-4 col-sm-4 col-md-2 pl-md-0"><input type="text"
-                                    class="form-control form-control-sm" id="amount"></div>
                         </div>
+                        <hr>
                         <div class="row mt-3 justify-content-center">
-                            <div class="col-auto mb-2 mx-0"><button type="button" class="btn btn-primary"
-                                    id="invoice-btn">Generate
-                                    Invoice</button></div>
-                            <div class="col-auto mx-0"><button type="button" class="btn btn-warning" id="pdf-btn"
-                                    >Print
-                                    PDF</button></div>
+                            <div class="col-auto mb-2 mx-0">
+                                <button class="btn btn-primary" id="generate-btn">Generate Invoice</button>
+                            </div>
+                            <div class="col-auto mx-0"><button class="btn btn-warning" id="pdf-btn" disabled>Print PDF</button>
+                            </div>
+
+
                         </div>
                         <!-- Invoice Summary -->
                         <div class="row invoice-summary my-5">
                             <div class="container bg-light">
+                                <div class="row">
+                                    <div class="col text-right">
+                                        <h3>INVOICE SUMMARY</h3>
+                                    </div>
+                                </div>
                                 <div class="row justify-content-end text-right">
                                     <div class="col-10">Invoice Number:</div>
-                                    <div class="col-2">00000001</div>
+                                    <div id="invoice-number" class="col-2"></div>
                                 </div>
                                 <div class="row justify-content-end text-right">
                                     <div class="col-10">Invoice Total:</div>
-                                    <div class="col-2">$500</div>
+                                    <div id="invoice-total" class="col-2"></div>
                                 </div>
                                 <div class="row justify-content-end text-right">
                                     <div class="col-10">Paid Amount:</div>
-                                    <div class="col-2">$50</div>
+                                    <div id="paid-amount" class="col-2"></div>
                                 </div>
                                 <div class="row justify-content-end text-right sub-report-row">
                                     <div class="col-10">Discounted Amount:</div>
-                                    <div class="col-2">$20</div>
+                                    <div id="discounted-amount" class="col-2"></div>
                                 </div>
                                 <div class="row justify-content-end text-right text-danger">
                                     <div class="col-10">Balance Due:</div>
-                                    <div class="col-2">$470</div>
+                                    <div id="balance-due" class="col-2"></div>
                                 </div>
                             </div>
                         </div>
@@ -192,6 +171,7 @@
         </div>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/create-invoice.js"></script>
 </body>
 
 </html>

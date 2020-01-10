@@ -43,7 +43,9 @@
         <div class="row">
             <div class="col-lg-2 left-col p-0 m-0">
                 <div id="mySidenav" class="sidenav bg-navy">
+                    <a href="./index.html">
                         <img class="sb-logo" src="./Resources/Images/Busi logo.png">
+                    </a>
                     <a href="./create-customer.html">Create Customer Account</a>
                     <a href="./create-sales-order.html">Create Sales Order</a>
                     <a href="./create-invoice.html">Generate Invoice</a>
@@ -59,52 +61,50 @@
                 <div class="row m-0">
                     <div class="container-fluid bg-yellow p-4">
                         <div class="row mb-2">
-                            <div class="col-sm-12 col-md-5"><input type="text" class="form-control" id="search"
+                            <div class="col-sm-12 col-md-5"><input type="text" class="form-control" id="search-term"
                                     placeholder="search an invoice ..."></div>
-                            <div class="col-sm-12 col-md-auto text-md-right pt-2"><label for="address">Search by:
+                            <div class="col-sm-12 col-md-auto text-md-right pt-2">
+                                <label for="address">Search by:
                                 </label></div>
                             <div class="col-sm-12 col-md-3 px-md-0">
-                                <select class="form-control" id="customer">
+                                <select class="form-control" id="search-by">
                                     <option>Invoice Number</option>
-                                    <option>Customer Account Number</option>
+                                    <option>Sales Order Number</option>
                                 </select>
                             </div>
-                            <div class="col-sm-12 mt-3 col-md-2 mt-md-0 "><button type="button" class="btn btn-primary"
-                                    id="submit-btn">Search</button></div>
+                            <div class="col-sm-12 mt-3 col-md-2 mt-md-0 ">
+                                <button class="btn btn-primary" id="search-btn">Search</button></div>
                         </div>
                     </div>
                 </div>
                 <!-- RESULT SECTION -->
                 <!-- This section should be hidden on page load. -->
                 <div class="row m-0 mt-5">
-                    <div class="container-fluid">
+                    <div id="result-header" class="container-fluid">
                         <!-- Table header-->
                         <div class="row table-header">
                             <div class="col-3"> Invoice #</div>
-                            <div class="col-3"> Customer Account #</div>
-                            <div class="col-2"> Sales Order #</div>
-                            <div class="col-2"> Invoice Date</div>
-                            <div class="col-2 text-right"> Balance Due</div>
+                            <div class="col-3"> Sales Order #</div>
+                            <div class="col-3"> Invoice Date #</div>
+                            <div class="col-3 text-right"> Invoice Amount</div>
                         </div>
-                        <div class="row sub-report-text sub-report-row py-1">
-                            <div class="col-3"><a href="/api/update/" id="00000001">00000001</a> </div>
-                            <div class="col-3"> 12345678</div>
-                            <div class="col-2"> 00000008</div>
-                            <div class="col-2"> 01/02/20</div>
-                            <div class="col-2 text-right">$200</div>
-                        </div>
-                        <div class="row sub-report-text sub-report-row py-1">
-                            <div class="col-3"> <a href="/api/update/" id="00000001">00000002</a></div>
-                            <div class="col-3"> 12345679</div>
-                            <div class="col-2"> 00000004</div>
-                            <div class="col-2"> 12/10/19</div>
-                            <div class="col-2 text-right"> $50</div>
-                        </div>
+                    </div>
+                    <!-- Result Header Container for showing newly created customers. -->
+                    <div id="result-container" class="container-fluid">
+                        <!-- results to be shown here -->
+                        <!-- <div class="row sub-report-text sub-report-row py-1">
+                            <div class="col-3"> Invoice #</div>
+                            <div class="col-3"> Sales Order #</div>
+                            <div class="col-3"> Invoice Date #</div>
+                            <div class="col-3 text-right"> Invoice Amount</div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/search-invoice.js"></script>
 </body>
+
 </html>

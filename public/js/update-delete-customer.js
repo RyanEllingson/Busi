@@ -1,9 +1,10 @@
 // get session storage from the page search-customer.html
-let customerId = sessionStorage.getItem("customerId");
+let customerId = sessionStorage.getItem("id");
 const accountEl = document.getElementById("account");
 const nameEl = document.getElementById("name");
 const addressEl = document.getElementById("address");
 const phoneEl = document.getElementById("phone");
+// get data from db based on the id then show data in the form
 axios.get(`/api/customers/${customerId}`).then(res => {
   console.log(res);
   accountEl.value = customerId;
@@ -25,6 +26,7 @@ document.getElementById("update-btn").addEventListener("click", function() {
 
 // Delete customer
 document.getElementById("delete-btn").addEventListener("click", function() {
+  // Bonus: should confirm user before deleting!
   axios.delete(`/api/customers/${customerId}`).then(res => {
     console.log("Deleted!");
     accountEl.value = "";
