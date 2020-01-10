@@ -2,10 +2,16 @@
 
 ***Busi*** is a *simple, fast,* and *user-friendly* sales management solution developed for startups and small-scale businesses. Supported functions allow a user to *create, search,* and *update* customers, sales orders, invoices, and payments.
 
+Check out the deployed app on Heroku:
+
+https://ryan-busi.herokuapp.com/index.html
+
 
 ### Concept:
 ---
 We wanted to create a platform that is intuitive and applicable in the real world. We decided to design something for small businesses to help manage sales and keep important data organized in one place. Additionally, we wanted to give it a simple, user friendly design that provides a smooth experience.
+
+![Screenshot](https://github.com/RyanEllingson/Busi/blob/master/assets/images/Screen%20Shot%202020-01-10%20at%2011.24.32%20AM.png)
 
 ### Technology:
 ---
