@@ -3,19 +3,22 @@ const _ = require("underscore");
 const Op = db.Sequelize.Op;
 
 module.exports = {
+  // function for creating a new customer
   postCustomerApi: async function(req, res) {
     const dbCustomer = await db.Customer.create(req.body);
     res.json(dbCustomer);
   },
+  // function for creating a new sales order
   postOrderApi: async function(req, res) {
     const dbOrder = await db.Order.create(req.body);
     res.json(dbOrder);
   },
+  // function for creating a new invoice
   postInvoiceApi: async function(req, res) {
     const dbInvoice = await db.Invoice.create(req.body);
     const salesorderId = dbInvoice.dataValues.salesorder_id;
+    // automatically assign the amount of the invoice based on the amount of the given sales order
     const dbOrders = await db.Order.findAll({ where: { id: salesorderId } });
-    console.log(dbOrders);
     const amount = dbOrders[0].amount;
     const dbInvoice2 = await db.Invoice.update(
       { total_amount: amount },
@@ -23,9 +26,11 @@ module.exports = {
     );
     res.json(dbInvoice);
   },
+  // function for creating a new payment
   postPaymentApi: async function(req, res) {
     const dbPayment = await db.Payment.create(req.body);
     const invoiceId = dbPayment.dataValues.invoice_id;
+    // after a new payment is created, grab all the payments for the given invoice and calculate how much has been paid toward that invoice
     const dbPayments = await db.Payment.findAll({
       where: { invoice_id: invoiceId }
     });
@@ -35,6 +40,7 @@ module.exports = {
       totalPaid = totalPaid + amount;
     }
     const dbInvoices = await db.Invoice.findAll({ where: { id: invoiceId } });
+    // evaluate whether the invoice has been paid in full
     let isPaid;
     if (dbInvoices[0].total_amount - req.body.discount - totalPaid > 0) {
       isPaid = false;
@@ -275,6 +281,7 @@ module.exports = {
           { where: { id: req.params.id } }
         ).then(function(dbInvoice) {
           if (req.body.discount) {
+            // if we are updating the discount, we have to reevaluate whether the invoice has been paid in full
             db.Invoice.findAll({ where: { id: req.params.id } }).then(function(
               dbInvoices
             ) {
@@ -304,6 +311,7 @@ module.exports = {
         db.Invoice.findAll({ where: { id: req.params.id } }).then(function(
           dbInvoices
         ) {
+          // if we are updating the discount, we have to reevaluate whether the invoice has been paid in full
           let isPaid;
           if (
             dbInvoices[0].total_amount -
@@ -361,6 +369,7 @@ module.exports = {
         db.Payment.findAll({ where: { id: req.params.id } }).then(function(
           dbPayment
         ) {
+          // if we are changing the invoice to which a payment is applied, we have to recalculate how much has been paid on the original invoice as well as the new one, as well as determine whether they both have been paid in full
           const oldInvoiceId = dbPayment[0].invoice_id;
           db.Payment.update(
             { invoice_id: req.body.invoice_id },
@@ -418,6 +427,7 @@ module.exports = {
                             { where: { id: req.body.invoice_id } }
                           ).then(function(dbInvoice) {
                             if (req.body.amount) {
+                              // if changing the amount of a payment, reevaluate how much has been paid toward that invoice and whether it has been paid in full
                               db.Payment.update(
                                 { amount: req.body.amount },
                                 { where: { id: req.params.id } }
@@ -481,6 +491,7 @@ module.exports = {
           });
         });
       } else if (req.body.amount) {
+        // if changing the amount of a payment, reevaluate how much has been paid toward that invoice and whether it has been paid in full
         db.Payment.update(
           { amount: req.body.amount },
           { where: { id: req.params.id } }
@@ -510,10 +521,6 @@ module.exports = {
                   } else {
                     isPaid = true;
                   }
-                  console.log("total amount = " + dbInvoices[0].total_amount);
-                  console.log("discount = " + dbInvoices[0].discount);
-                  console.log("total paid = " + totalPaid);
-                  console.log("isPaid = " + isPaid);
                   db.Invoice.update(
                     { amount_paid: totalPaid, paid: isPaid },
                     { where: { id: invoiceId } }
@@ -533,6 +540,7 @@ module.exports = {
       db.Payment.findAll({ where: { id: req.params.id } }).then(function(
         dbPayment
       ) {
+        // after deleting a payment, we have to reevaluate how much has been paid toward an invoice and whether it has been paid in full
         const invoiceId = dbPayment[0].invoice_id;
         db.Payment.destroy({ where: { id: req.params.id } }).then(function(
           dbPayment
