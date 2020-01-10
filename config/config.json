@@ -1,27 +1,27 @@
 {
   "development": {
-    "username": "root",
-    "password": "root",
-    "database": "busi_db",
-    "host": "localhost",
+    "username": "wmdo28wy05flbu9g",
+    "password": "qpc3cud34142v9lt",
+    "database": "cpsti22cfpd4s9vp",
+    "host": "y5s2h87f6ur56vae.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "port": "3306",
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": "root",
-    "database": "busi_db",
-    "host": "localhost",
+    "username": "wmdo28wy05flbu9g",
+    "password": "qpc3cud34142v9lt",
+    "database": "cpsti22cfpd4s9vp",
+    "host": "y5s2h87f6ur56vae.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "port": "3306",
     "socketPath": "~travis/.my.cnf",
     "dialect": "mysql",
     "logging": false
   },
   "ci": {
-    "username": "root",
-    "password": "root",
-    "database": "testdb",
-    "host": "127.0.0.1",
+    "username": "wmdo28wy05flbu9g",
+    "password": "qpc3cud34142v9lt",
+    "database": "cpsti22cfpd4s9vp",
+    "host": "y5s2h87f6ur56vae.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "socketPath": "~travis/.my.cnf",
     "dialect": "mysql",
     "logging": false
