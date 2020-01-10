@@ -2,9 +2,6 @@
 
 ***Busi*** is a *simple, fast,* and *user-friendly* sales management solution developed for startups and small-scale businesses. Supported functions allow a user to *create, search,* and *update* customers, sales orders, invoices, and payments.
 
-![homepage_gif](https://user-images.githubusercontent.com/57336277/72170285-383f3980-3396-11ea-8fc5-8cfe7f779355.gif)
-![GIF4](https://user-images.githubusercontent.com/57336277/72171950-96b9e700-3399-11ea-92a7-8937d59076dd.gif)
-![GIF5](https://user-images.githubusercontent.com/57336277/72171956-991c4100-3399-11ea-99a4-326cc16cef3e.gif)
 
 ### Concept:
 ---
