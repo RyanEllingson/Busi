@@ -1,10 +1,10 @@
 require("dotenv").config();
-var express = require("express");
+const express = require("express");
 
-var db = require("./models");
+const db = require("./models");
 
-var app = express();
-var PORT = process.env.PORT || 3000;
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -15,7 +15,7 @@ app.use(express.static("public"));
 const API = require("./routes/apiRoutes");
 API.api(app);
 
-var syncOptions = { force: false };
+const syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
