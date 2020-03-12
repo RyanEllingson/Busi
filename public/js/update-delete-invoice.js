@@ -27,7 +27,7 @@ axios.get(`/api/invoices/${invoiceID}`).then(invoice => {
   if (discount === null) {
     discount = 0;
   }
-  axios.get("/api/salesorders").then(order => {
+  axios.get(`/api/salesorders/${orderID}`).then(order => {
     console.log("order: ", order);
     // INVOICE FOOTER
     totalInvoiceAmt = order.data[0].amount;
